@@ -22,8 +22,8 @@ public class LoggerManage {
     @Before("within(com.wtyt..*) && @annotation(loggerAnnotation)")
     public void addBeforeLogger(JoinPoint joinPoint, LoggerAnnotation loggerAnnotation) {
         log.info("执行 " + loggerAnnotation.description() + " 开始");
-        log.info(joinPoint.getSignature().toString());
-        log.info(parseParames(joinPoint.getArgs()));
+        log.info("方法路径:"+joinPoint.getSignature().toString());
+        log.info("传入参数:"+parseParames(joinPoint.getArgs()));
     }
 
     @AfterReturning("within(com.wtyt..*) && @annotation(loggerAnnotation)")
@@ -40,7 +40,7 @@ public class LoggerManage {
         if (null == parames || parames.length <= 0) {
             return "";
         }
-        StringBuffer param = new StringBuffer("传入参数[{}] ");
+        StringBuffer param = new StringBuffer();
         for (Object obj : parames) {
             param.append(ToStringBuilder.reflectionToString(obj)).append("  ");
         }

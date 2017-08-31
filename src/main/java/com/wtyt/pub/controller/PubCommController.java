@@ -1,5 +1,6 @@
 package com.wtyt.pub.controller;
 
+import com.wtyt.pub.aop.LoggerAnnotation;
 import com.wtyt.pub.bean.PubUserBean;
 import com.wtyt.util.base.BaseController;
 import org.slf4j.Logger;
@@ -13,18 +14,15 @@ public class PubCommController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
+    @LoggerAnnotation(description="index")
     public String index(Model model) {
-        log.info("进入index");
         PubUserBean pubUserBean = new PubUserBean();
         model.addAttribute("user", pubUserBean);
-        log.info("离开index");
         return "/login";
     }
 
     @RequestMapping("*")
     public String page404() {
-        log.info("进入index");
-        log.info("离开index");
         return "/404";
     }
 
