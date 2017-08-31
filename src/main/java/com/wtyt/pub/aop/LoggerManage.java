@@ -22,7 +22,7 @@ public class LoggerManage {
     @Before("within(com.wtyt..*) && @annotation(loggerAnnotation)")
     public void addBeforeLogger(JoinPoint joinPoint, LoggerAnnotation loggerAnnotation) {
         log.info("执行 " + loggerAnnotation.description() + " 开始");
-        log.info("方法路径:"+joinPoint.getSignature().toString());
+//        log.info("方法路径:"+joinPoint.getSignature().toString());
         log.info("传入参数:"+parseParames(joinPoint.getArgs()));
     }
 

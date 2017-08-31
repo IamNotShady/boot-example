@@ -20,7 +20,7 @@ public class PubUserController extends BaseController {
     private PubUserService pubUserService;
 
     @RequestMapping("login")
-    @LoggerAnnotation(description="login")
+    @LoggerAnnotation(description="PubUserController.login")
     public String login(Model model,PubUserBean pubUserBean) {
         try {
             PubUserBean user = pubUserService.getUserByName(pubUserBean);
@@ -37,7 +37,7 @@ public class PubUserController extends BaseController {
     }
 
     @RequestMapping("logout")
-    @LoggerAnnotation(description="logout")
+    @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
         model.addAttribute("user", new PubUserBean());
         session.removeAttribute(SbConstants.USER_KEY);

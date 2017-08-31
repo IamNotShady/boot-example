@@ -14,7 +14,7 @@ public class PubCommController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
-    @LoggerAnnotation(description="index")
+    @LoggerAnnotation(description="PubCommController.index")
     public String index(Model model) {
         PubUserBean pubUserBean = new PubUserBean();
         model.addAttribute("user", pubUserBean);

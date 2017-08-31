@@ -35,7 +35,7 @@ public class BasProController extends BaseController {
      * @return
      */
     @RequestMapping("/pro")
-    @LoggerAnnotation(description="querypro")
+    @LoggerAnnotation(description="BasProController.querypro")
     public String querypro(ModelMap modelMap, BasProBean bean) {
         try {
             basProService.queryBasPro(bean);
@@ -53,7 +53,7 @@ public class BasProController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/goinspro", method = RequestMethod.GET)
-    @LoggerAnnotation(description="goinspro")
+    @LoggerAnnotation(description="BasProController.goinspro")
     public String goinspro(ModelMap modelMap) {
         return "/bas/bas_pro_add";
     }
@@ -64,7 +64,7 @@ public class BasProController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/inspro", method = RequestMethod.POST)
-    @LoggerAnnotation(description="inspro")
+    @LoggerAnnotation(description="BasProController.inspro")
     @ResponseBody
     public AjaxBean inspro(BasProBean bean) throws Exception {
         basProService.insBasPro(bean);
@@ -78,7 +78,7 @@ public class BasProController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/insproerr", method = RequestMethod.POST)
-    @LoggerAnnotation(description="insproerr")
+    @LoggerAnnotation(description="BasProController.insproerr")
     @ResponseBody
     public AjaxBean insproerr(BasProBean bean) throws Exception {
         basProService.insBasProErr(bean);
@@ -92,7 +92,7 @@ public class BasProController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/delpro/{id}", method = RequestMethod.GET)
-    @LoggerAnnotation(description="delBasPro")
+    @LoggerAnnotation(description="BasProController.delBasPro")
     @ResponseBody
     public AjaxBean delBasPro(@PathVariable String id) throws Exception {
         BasProBean bean = new BasProBean();
