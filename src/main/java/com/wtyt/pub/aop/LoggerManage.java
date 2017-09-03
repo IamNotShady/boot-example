@@ -31,10 +31,10 @@ public class LoggerManage {
         log.info("执行 " + loggerAnnotation.description() + " 结束");
     }
 
-    @AfterThrowing(pointcut = "within(com.wtyt..*) && @annotation(loggerAnnotation)", throwing = "e")
-    public void addAfterThrowingLogger(JoinPoint joinPoint, LoggerAnnotation loggerAnnotation, Exception e) {
-        log.error(e.getMessage(),e);
-    }
+//    @AfterThrowing(pointcut = "within(com.wtyt..*) && @annotation(loggerAnnotation)", throwing = "e")
+//    public void addAfterThrowingLogger(JoinPoint joinPoint, LoggerAnnotation loggerAnnotation, Exception e) {
+//        log.error(e.getMessage(),e);
+//    }
 
     private String parseParames(Object[] parames) {
         if (null == parames || parames.length <= 0) {

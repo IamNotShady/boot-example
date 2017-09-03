@@ -4,11 +4,12 @@ package com.wtyt.bas.bean;
 import com.wtyt.util.bean.BaseBean;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Table(name = "t_sb_pro")
-public class BasProBean extends BaseBean {
+public class BasProBean extends BaseBean implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "JDBC")

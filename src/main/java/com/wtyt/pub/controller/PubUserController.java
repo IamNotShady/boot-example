@@ -26,10 +26,12 @@ public class PubUserController extends BaseController {
             PubUserBean user = pubUserService.getUserByName(pubUserBean);
             session.setAttribute(SbConstants.USER_KEY, user);
         } catch (BaseException e) {
+            log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
             model.addAttribute("info", e.getMessage());
             return "login";
         } catch (Exception e) {
+            log.error(e.getMessage(),e);
             model.addAttribute("info", SbConstants.SYS_EXCEPTION);
             return EXCEPTION_PAGE;
         }

@@ -1,12 +1,12 @@
 package com.wtyt.pub.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.wtyt.pub.aop.LoggerAnnotation;
 import com.wtyt.pub.bean.PubUserBean;
 import com.wtyt.pub.mapper.PubUserMapper;
 import com.wtyt.pub.service.PubUserService;
 import com.wtyt.util.base.BaseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PubUserServiceImpl implements PubUserService {
@@ -15,6 +15,7 @@ public class PubUserServiceImpl implements PubUserService {
     private PubUserMapper pubUserMapper;
 
     @Override
+    @LoggerAnnotation(description="PubUserServiceImpl.getUserByName")
     public PubUserBean getUserByName(PubUserBean pubUserBean)
             throws BaseException, Exception {
         PubUserBean bean = pubUserMapper.getUserByName(pubUserBean

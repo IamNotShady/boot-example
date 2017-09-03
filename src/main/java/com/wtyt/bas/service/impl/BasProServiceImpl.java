@@ -5,10 +5,11 @@ import com.github.pagehelper.PageInfo;
 import com.wtyt.bas.bean.BasProBean;
 import com.wtyt.bas.mapper.BasProMapper;
 import com.wtyt.bas.service.BasProService;
+import com.wtyt.pub.aop.LoggerAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,7 @@ public class BasProServiceImpl implements BasProService {
     @Autowired
     private BasProMapper basProMapper;
 
-    @Cacheable(value="user-key")
+    @LoggerAnnotation(description="BasProServiceImpl.queryBasPro")
     public void queryBasPro(BasProBean bean) throws Exception {
         if (bean.getPage() != null && bean.getRows() != null) {
             PageHelper.startPage(bean.getPage(), bean.getRows());
@@ -41,6 +42,7 @@ public class BasProServiceImpl implements BasProService {
         basProMapper.insert(bean);
     }
 
+    @CacheEvict(value = "basPro",allEntries=true)
     public void delBasPro(BasProBean bean) throws Exception {
         basProMapper.delete(bean);
     }

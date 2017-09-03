@@ -5,19 +5,17 @@ import com.wtyt.bas.service.BasProService;
 import com.wtyt.pub.aop.LoggerAnnotation;
 import com.wtyt.pub.bean.AjaxBean;
 import com.wtyt.util.base.BaseController;
+import com.wtyt.util.common.RedisUtils;
 import com.wtyt.util.common.SbConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("bas")
@@ -26,8 +24,8 @@ public class BasProController extends BaseController {
     @Autowired
     private BasProService basProService;
 
-    @Resource(name="masterRedis")
-    private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisUtils redisUtils;
 
     /**
      * 查询产品列表
@@ -38,9 +36,11 @@ public class BasProController extends BaseController {
     @LoggerAnnotation(description="BasProController.querypro")
     public String querypro(ModelMap modelMap, BasProBean bean) {
         try {
+            redisUtils.set("bean",bean);
             basProService.queryBasPro(bean);
             modelMap.addAttribute("proBean", bean);
         } catch (Exception e) {
+            log.error(e.getMessage(),e);
             modelMap.addAttribute("info", SbConstants.SYS_EXCEPTION);
             return EXCEPTION_PAGE;
         }
