@@ -3,16 +3,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wtyt</groupId>
-	<artifactId>SpringBoot-Web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>spring-boot-web</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>SpringBoot-Web</name>
+	<name>spring-boot-web</name>
 	<description>Spring Boot Web</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.2.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +19,7 @@
 		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
+		<docker.image.prefix>spring-boot-web</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -115,13 +115,28 @@
 			<version>2.19</version>
 		</dependency>
 	</dependencies>
+
 	<build>
+		<finalName>spring-boot-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
 				<configuration>
-					<fork>true</fork>
+					<imageName>${docker.image.prefix}</imageName>
+					<dockerDirectory>/</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
 				</configuration>
 			</plugin>
 		</plugins>
