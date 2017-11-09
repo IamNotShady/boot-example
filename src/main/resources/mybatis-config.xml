@@ -5,10 +5,10 @@
 <configuration>
 	<!-- 全局别名 -->
 	<typeAliases>
-		<package name="com.wtyt.bas.bean" />
-		<package name="com.wtyt.pub.bean" />
-		<package name="com.wtyt.util.bean" />
-		<package name="com.wtyt.demo.bean" />
+		<package name="com.boot.bas.bean" />
+		<package name="com.boot.pub.bean" />
+		<package name="com.boot.util.bean" />
+		<package name="com.boot.demo.bean" />
 		<package name="java.lang" />
 		<package name="java.util" />
 		<!-- typeAlias alias="" type="" / -->
