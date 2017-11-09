@@ -14,6 +14,6 @@
 		<!-- typeAlias alias="" type="" / -->
 	</typeAliases>
 	<!-- mapping 文件路径配置 -->
-	<!--mappers> <mapper resource="com/wtyt/xxx.xml" /> </mappers -->
+	<!--mappers> <mapper resource="com/boot/xxx.xml" /> </mappers -->
 </configuration>
 

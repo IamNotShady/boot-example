@@ -16,7 +16,7 @@ public class LoggerManage {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-//    @Pointcut("execution(* com.wtyt..*.*(..))")
+//    @Pointcut("execution(* com.boot..*.*(..))")
 //    public void webLog(){}
 
     @Before("within(com.boot..*) && @annotation(loggerAnnotation)")
@@ -31,7 +31,7 @@ public class LoggerManage {
         log.info("执行 " + loggerAnnotation.description() + " 结束");
     }
 
-//    @AfterThrowing(pointcut = "within(com.wtyt..*) && @annotation(loggerAnnotation)", throwing = "e")
+//    @AfterThrowing(pointcut = "within(com.boot..*) && @annotation(loggerAnnotation)", throwing = "e")
 //    public void addAfterThrowingLogger(JoinPoint joinPoint, LoggerAnnotation loggerAnnotation, Exception e) {
 //        log.error(e.getMessage(),e);
 //    }

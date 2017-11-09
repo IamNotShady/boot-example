@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement// 启动注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
 @ComponentScan(basePackages = {"com.boot"})
-@MapperScan("com.wtyt.*.mapper")
+@MapperScan("com.boot.*.mapper")
 public class SbwebApplication {
 
     public static void main(String[] args) throws Exception {
