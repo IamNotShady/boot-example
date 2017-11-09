@@ -1,6 +1,4 @@
-FROM java:8-jdk
-VOLUME /tmp
-COPY target/spring-boot-web-1.0.0.jar app.jar
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
-
+FROM java:8u66-jdk
+ADD target/spring-boot-web.jar /opt/spring-boot-web.jar
+EXPOSE 8080
+CMD java -Djava.security.egd=file:/dev/./urandom -jar /opt/spring-boot-web.jar
