@@ -14,3 +14,4 @@ Spring Boot模板项目,集成的技术如下：<br />
 - 热部署<br />
 - Redis<br />
 - 日志切片处理<br />
+- Shiro<br />
