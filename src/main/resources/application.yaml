@@ -11,7 +11,7 @@ spring:
     database: 0
     host: 127.0.0.1
     port: 6379
-    password: 19930703
+    password: 123456
     timeout: 0
     maxActive: 8
     maxWait: -1
@@ -21,7 +21,7 @@ spring:
 druid:
   url: jdbc:mysql://mysql:3306/test
   username: root
-  password: 19930703
+  password: 123456
   driverClassName: com.mysql.jdbc.Driver
   type: com.alibaba.druid.pool.DruidDataSource
   # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -64,7 +64,7 @@ mybatis:
 #通用mapper
 #mappers 多个接口时逗号隔开
 mapper:
-  mappers: com.boot.util.base.BaseMapper
+  mappers: com.boot.common.base.BaseMapper
   not-empty: true
   before: true
   identity: mysql

@@ -1,7 +1,7 @@
-package com.boot.pub.bean;
+package com.boot.user.bean;
 
 import com.alibaba.fastjson.JSONObject;
-import com.boot.util.common.SbConstants;
+import com.boot.util.SbConstants;
 
 public class AjaxBean {
 

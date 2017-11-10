@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.boot.bas.mapper.BasProMapper">
-    <select id="getBasProList" useCache="false"  parameterType="BasProBean"
-            resultType="BasProBean">
+<mapper namespace="com.boot.pro.mapper.ProMapper">
+    <select id="getBasProList" useCache="false"  parameterType="ProBean"
+            resultType="ProBean">
         SELECT id,pro_name,pro_code,DATE_FORMAT(created_time,'%Y-%m-%d %H:%i:%s') created_time FROM t_sb_pro
         WHERE 1=1
         <if test="pro_name != null and pro_name != ''">

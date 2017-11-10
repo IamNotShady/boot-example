@@ -1,4 +1,4 @@
-package com.boot.pub.aop;
+package com.boot.common.aop;
 
 import java.lang.annotation.*;
 

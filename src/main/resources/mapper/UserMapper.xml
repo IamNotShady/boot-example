@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.boot.pub.mapper.PubUserMapper">
-	<select id="getUserByName" useCache="false" parameterType="PubUserBean"
-		resultType="PubUserBean">
+<mapper namespace="com.boot.user.mapper.UserMapper">
+	<select id="getUserByName" useCache="false" parameterType="UserBean"
+		resultType="UserBean">
 		SELECT login_name,real_name,pass_word FROM t_sb_user
 		WHERE login_name = #{login_name}
 	</select>

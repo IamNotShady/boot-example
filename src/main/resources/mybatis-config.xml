@@ -5,8 +5,8 @@
 <configuration>
 	<!-- 全局别名 -->
 	<typeAliases>
-		<package name="com.boot.bas.bean" />
-		<package name="com.boot.pub.bean" />
+		<package name="com.boot.pro.bean" />
+		<package name="com.boot.user.bean" />
 		<package name="com.boot.util.bean" />
 		<package name="com.boot.demo.bean" />
 		<package name="java.lang" />

@@ -1,18 +1,19 @@
-package com.boot.bas.mapper;
-
-import com.boot.bas.bean.BasProBean;
-import com.boot.util.base.BaseMapper;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+package com.boot.pro.mapper;
 
 import java.util.List;
 
+import com.boot.pro.bean.ProBean;
+import com.boot.common.base.BaseMapper;
+
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
 @Repository
-public interface BasProMapper extends BaseMapper<BasProBean> {
+public interface ProMapper extends BaseMapper<ProBean> {
 
 
     @Cacheable(value = "basPro", key = "'getBasProList_'+#p0.getPro_name()+#p0.getPro_code()", unless="#result == null")
     //@Cacheable(value = "basPro",keyGenerator = "keyGenerator")
-    List<BasProBean> getBasProList(BasProBean bean);
+    List<ProBean> getBasProList(ProBean bean);
 
 }

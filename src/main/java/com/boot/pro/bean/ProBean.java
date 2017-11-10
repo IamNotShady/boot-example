@@ -1,15 +1,16 @@
-package com.boot.bas.bean;
+package com.boot.pro.bean;
 
 
-import com.boot.util.bean.BaseBean;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.*;
+
+import com.boot.common.base.BaseBean;
+
 
 @Table(name = "t_sb_pro")
-public class BasProBean extends BaseBean implements Serializable {
+public class ProBean extends BaseBean implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "JDBC")
@@ -24,7 +25,7 @@ public class BasProBean extends BaseBean implements Serializable {
 	@Column
 	private String last_modified_time;
 	@Transient
-	private List<BasProBean> proList;
+	private List<ProBean> proList;
 
 	public Long getId() {
 		return id;
@@ -66,11 +67,11 @@ public class BasProBean extends BaseBean implements Serializable {
 		this.last_modified_time = last_modified_time;
 	}
 
-	public List<BasProBean> getProList() {
+	public List<ProBean> getProList() {
 		return proList;
 	}
 
-	public void setProList(List<BasProBean> proList) {
+	public void setProList(List<ProBean> proList) {
 		this.proList = proList;
 	}
 }

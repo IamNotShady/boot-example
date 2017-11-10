@@ -1,11 +1,12 @@
-package com.boot.pub.controller;
+package com.boot.user.controller;
 
-import com.boot.pub.aop.LoggerAnnotation;
-import com.boot.pub.bean.PubUserBean;
-import com.boot.pub.service.PubUserService;
-import com.boot.util.base.BaseController;
-import com.boot.util.base.BaseException;
-import com.boot.util.common.SbConstants;
+import com.boot.common.base.BaseController;
+import com.boot.common.base.BaseException;
+import com.boot.common.aop.LoggerAnnotation;
+import com.boot.user.bean.UserBean;
+import com.boot.user.service.UserService;
+import com.boot.util.SbConstants;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PubUserController extends BaseController {
+public class UserController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private PubUserService pubUserService;
+    private UserService pubUserService;
 
     @RequestMapping("login")
     @LoggerAnnotation(description="PubUserController.login")
-    public String login(Model model,PubUserBean pubUserBean) {
+    public String login(Model model,UserBean pubUserBean) {
         try {
-            PubUserBean user = pubUserService.getUserByName(pubUserBean);
+            UserBean user = pubUserService.getUserByName(pubUserBean);
             session.setAttribute(SbConstants.USER_KEY, user);
         } catch (BaseException e) {
             log.error(e.getMessage(),e);
@@ -41,7 +42,7 @@ public class PubUserController extends BaseController {
     @RequestMapping("logout")
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
-        model.addAttribute("user", new PubUserBean());
+        model.addAttribute("user", new UserBean());
         session.removeAttribute(SbConstants.USER_KEY);
         return "/login";
     }

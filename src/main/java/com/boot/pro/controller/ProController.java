@@ -1,12 +1,12 @@
-package com.boot.bas.controller;
+package com.boot.pro.controller;
 
-import com.boot.bas.bean.BasProBean;
-import com.boot.bas.service.BasProService;
-import com.boot.pub.aop.LoggerAnnotation;
-import com.boot.pub.bean.AjaxBean;
-import com.boot.util.base.BaseController;
-import com.boot.util.common.RedisUtils;
-import com.boot.util.common.SbConstants;
+import com.boot.pro.bean.ProBean;
+import com.boot.pro.service.ProService;
+import com.boot.common.base.BaseController;
+import com.boot.common.aop.LoggerAnnotation;
+import com.boot.user.bean.AjaxBean;
+import com.boot.util.RedisUtils;
+import com.boot.util.SbConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("bas")
-public class BasProController extends BaseController {
+public class ProController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private BasProService basProService;
+    private ProService basProService;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -34,7 +34,7 @@ public class BasProController extends BaseController {
      */
     @RequestMapping("/pro")
     @LoggerAnnotation(description="BasProController.querypro")
-    public String querypro(ModelMap modelMap, BasProBean bean) {
+    public String querypro(ModelMap modelMap, ProBean bean) {
         try {
             redisUtils.set("bean",bean);
             basProService.queryBasPro(bean);
@@ -66,7 +66,7 @@ public class BasProController extends BaseController {
     @RequestMapping(value = "/inspro", method = RequestMethod.POST)
     @LoggerAnnotation(description="BasProController.inspro")
     @ResponseBody
-    public AjaxBean inspro(BasProBean bean) throws Exception {
+    public AjaxBean inspro(ProBean bean) throws Exception {
         basProService.insBasPro(bean);
         AjaxBean ajaxBean = new AjaxBean();
         return ajaxBean;
@@ -80,7 +80,7 @@ public class BasProController extends BaseController {
     @RequestMapping(value = "/insproerr", method = RequestMethod.POST)
     @LoggerAnnotation(description="BasProController.insproerr")
     @ResponseBody
-    public AjaxBean insproerr(BasProBean bean) throws Exception {
+    public AjaxBean insproerr(ProBean bean) throws Exception {
         basProService.insBasProErr(bean);
         AjaxBean ajaxBean = new AjaxBean();
         return ajaxBean;
@@ -95,7 +95,7 @@ public class BasProController extends BaseController {
     @LoggerAnnotation(description="BasProController.delBasPro")
     @ResponseBody
     public AjaxBean delBasPro(@PathVariable String id) throws Exception {
-        BasProBean bean = new BasProBean();
+        ProBean bean = new ProBean();
         bean.setId(Long.valueOf(id));
         basProService.delBasPro(bean);
         AjaxBean ajaxBean = new AjaxBean();

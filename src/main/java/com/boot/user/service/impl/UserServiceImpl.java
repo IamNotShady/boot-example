@@ -1,24 +1,25 @@
-package com.boot.pub.service.impl;
+package com.boot.user.service.impl;
 
-import com.boot.pub.aop.LoggerAnnotation;
-import com.boot.pub.bean.PubUserBean;
-import com.boot.pub.mapper.PubUserMapper;
-import com.boot.pub.service.PubUserService;
-import com.boot.util.base.BaseException;
+import com.boot.common.base.BaseException;
+import com.boot.common.aop.LoggerAnnotation;
+import com.boot.user.bean.UserBean;
+import com.boot.user.mapper.UserMapper;
+import com.boot.user.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PubUserServiceImpl implements PubUserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private PubUserMapper pubUserMapper;
+    private UserMapper pubUserMapper;
 
     @Override
     @LoggerAnnotation(description="PubUserServiceImpl.getUserByName")
-    public PubUserBean getUserByName(PubUserBean pubUserBean)
+    public UserBean getUserByName(UserBean pubUserBean)
             throws BaseException, Exception {
-        PubUserBean bean = pubUserMapper.getUserByName(pubUserBean
+        UserBean bean = pubUserMapper.getUserByName(pubUserBean
                 .getLogin_name());
         if (bean == null) {
             throw new BaseException("用户在系统中不存在");

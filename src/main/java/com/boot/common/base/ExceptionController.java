@@ -2,8 +2,8 @@ package com.boot.common.base;
 
 import java.sql.SQLException;
 
-import com.boot.pub.bean.AjaxBean;
-import com.boot.util.common.SbConstants;
+import com.boot.user.bean.AjaxBean;
+import com.boot.util.SbConstants;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

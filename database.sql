@@ -1,10 +1,15 @@
-CREATE TABLE `test`.`t_sb_user` (
-	`login_name` varchar(32),
-	`real_name` varchar(32),
-	`pass_word` varchar(16)
-) COMMENT='';
+CREATE TABLE `test`.`t_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登陆用户名',
+  `password` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登录密码',
+  `create_dt` datetime(3) DEFAULT NULL,
+  `update_dt` datetime(3) DEFAULT NULL,
+  `pwdsalt` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hash密码用的盐',
+  `last_login_dt` datetime(3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `test`.`t_sb_pro` (
+CREATE TABLE `test`.`t_pro` (
 	`id` int(255) NOT NULL AUTO_INCREMENT,
 	`pro_name` varchar(64) NOT NULL,
 	`pro_code` varchar(64) NOT NULL,
