@@ -1,10 +1,12 @@
 package com.boot.user.mapper;
 
-import org.springframework.stereotype.Repository;
+import com.boot.common.base.BaseMapper;
 import com.boot.user.bean.UserBean;
 
+import org.springframework.stereotype.Repository;
+
 @Repository
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<UserBean> {
 
 	UserBean getUserByName(String loginName);
 

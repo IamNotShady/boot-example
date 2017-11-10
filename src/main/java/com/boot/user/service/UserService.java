@@ -5,5 +5,5 @@ import com.boot.user.bean.UserBean;
 
 public interface UserService {
 
-	UserBean getUserByName(UserBean pubUserBean) throws BaseException, Exception;
+	UserBean getUserByName(UserBean pubUserBean) throws BaseException;
 }

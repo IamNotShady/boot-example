@@ -13,19 +13,15 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper pubUserMapper;
+    private UserMapper userMapper;
 
     @Override
     @LoggerAnnotation(description="PubUserServiceImpl.getUserByName")
-    public UserBean getUserByName(UserBean pubUserBean)
-            throws BaseException, Exception {
-        UserBean bean = pubUserMapper.getUserByName(pubUserBean
-                .getLogin_name());
+    public UserBean getUserByName(UserBean userBean)
+            throws BaseException {
+        UserBean bean = userMapper.selectOne(userBean);
         if (bean == null) {
             throw new BaseException("用户在系统中不存在");
-        }
-        if (!pubUserBean.getPass_word().equals(bean.getPass_word())) {
-            throw new BaseException("密码不正确");
         }
         return bean;
     }

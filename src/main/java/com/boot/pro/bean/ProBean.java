@@ -9,11 +9,10 @@ import javax.persistence.*;
 import com.boot.common.base.BaseBean;
 
 
-@Table(name = "t_sb_pro")
+@Table(name = "t_pro")
 public class ProBean extends BaseBean implements Serializable {
 
 	@Id
-	@GeneratedValue(generator = "JDBC")
 	private Long id;
 	@Column
 	private String pro_name;
@@ -21,9 +20,9 @@ public class ProBean extends BaseBean implements Serializable {
 	private String pro_code;
 	@OrderBy("desc")
 	@Column
-	private String created_time;
+	private String create_dt;
 	@Column
-	private String last_modified_time;
+	private String update_dt;
 	@Transient
 	private List<ProBean> proList;
 
@@ -51,20 +50,20 @@ public class ProBean extends BaseBean implements Serializable {
 		this.pro_code = pro_code;
 	}
 
-	public String getCreated_time() {
-		return created_time;
+	public String getCreate_dt() {
+		return create_dt;
 	}
 
-	public void setCreated_time(String created_time) {
-		this.created_time = created_time;
+	public void setCreate_dt(String create_dt) {
+		this.create_dt = create_dt;
 	}
 
-	public String getLast_modified_time() {
-		return last_modified_time;
+	public String getUpdate_dt() {
+		return update_dt;
 	}
 
-	public void setLast_modified_time(String last_modified_time) {
-		this.last_modified_time = last_modified_time;
+	public void setUpdate_dt(String update_dt) {
+		this.update_dt = update_dt;
 	}
 
 	public List<ProBean> getProList() {

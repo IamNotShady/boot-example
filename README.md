@@ -12,7 +12,6 @@
 * FastJson
 * Thymeleaf
 * Pagehelper
-* Ehcache
 * 通用mapper
 * 热部署
 * Redis
