@@ -21,7 +21,7 @@
 ####Docker部署
 1. 构建镜像
     
-    `进入项目根目录执行 docker build -t spring-boot-web:latest -f ./Dockerfile ./
+    `进入项目根目录执行 docker build -t spring-boot-web:latest -f ./Dockerfile ./`
  
 2. 生成并运行容器
 
