@@ -1,4 +1,4 @@
-package com.boot.util.config;
+package com.boot.common.config;
 
 import com.boot.util.common.SbConstants;
 import org.slf4j.Logger;

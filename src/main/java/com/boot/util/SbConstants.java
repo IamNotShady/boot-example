@@ -1,4 +1,4 @@
-package com.boot.util.common;
+package com.boot.util;
 
 public class SbConstants {
     /**

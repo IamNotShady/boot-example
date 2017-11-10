@@ -1,4 +1,4 @@
-package com.boot.util.base;
+package com.boot.common.base;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

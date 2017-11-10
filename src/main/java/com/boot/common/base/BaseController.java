@@ -1,12 +1,13 @@
-package com.boot.util.base;
+package com.boot.common.base;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
+import java.net.URLDecoder;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.URLDecoder;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  * 基础Controller供每个Controller继承

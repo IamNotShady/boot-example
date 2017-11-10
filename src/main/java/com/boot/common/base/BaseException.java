@@ -1,4 +1,4 @@
-package com.boot.util.base;
+package com.boot.common.base;
 
 public class BaseException extends Exception {
 	private static final long serialVersionUID = -5161508214068953737L;

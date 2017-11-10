@@ -1,4 +1,4 @@
-package com.boot.util.bean;
+package com.boot.common.base;
 
 import javax.persistence.Transient;
 

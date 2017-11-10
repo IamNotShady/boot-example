@@ -1,4 +1,4 @@
-package com.boot.util.table;
+package com.boot.common.table;
 
 public class T_SB_USER {
 	private String login_name;

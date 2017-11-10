@@ -1,11 +1,12 @@
-package com.boot.util.common;
+package com.boot.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-import java.util.UUID;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public final class Tools {

@@ -1,4 +1,4 @@
-package com.boot.util.config;
+package com.boot.common.config;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;

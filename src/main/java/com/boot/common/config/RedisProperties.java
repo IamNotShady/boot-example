@@ -1,4 +1,4 @@
-package com.boot.util.config;
+package com.boot.common.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

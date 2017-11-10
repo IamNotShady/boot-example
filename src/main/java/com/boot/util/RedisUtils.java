@@ -1,13 +1,14 @@
-package com.boot.util.common;
+package com.boot.util;
+
+import java.io.Serializable;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
-import java.io.Serializable;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisUtils {

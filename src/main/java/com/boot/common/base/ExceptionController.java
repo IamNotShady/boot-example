@@ -1,15 +1,16 @@
-package com.boot.util.base;
+package com.boot.common.base;
+
+import java.sql.SQLException;
 
 import com.boot.pub.bean.AjaxBean;
 import com.boot.util.common.SbConstants;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.sql.SQLException;
 
 /**
  * 全局异常处理 处理控制器抛出的异常

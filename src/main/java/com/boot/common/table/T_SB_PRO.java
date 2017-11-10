@@ -1,4 +1,4 @@
-package com.boot.util.table;
+package com.boot.common.table;
 
 public class T_SB_PRO {
 	private String id;
