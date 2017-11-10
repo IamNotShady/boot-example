@@ -5,7 +5,7 @@ import com.boot.common.base.BaseException;
 import com.boot.common.aop.LoggerAnnotation;
 import com.boot.user.bean.UserBean;
 import com.boot.user.service.UserService;
-import com.boot.util.SbConstants;
+import com.boot.util.Constants;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class UserController extends BaseController {
     public String login(Model model,UserBean pubUserBean) {
         try {
             UserBean user = pubUserService.getUserByName(pubUserBean);
-            session.setAttribute(SbConstants.USER_KEY, user);
+            session.setAttribute(Constants.USER_KEY, user);
         } catch (BaseException e) {
             log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
@@ -33,7 +33,7 @@ public class UserController extends BaseController {
             return "login";
         } catch (Exception e) {
             log.error(e.getMessage(),e);
-            model.addAttribute("info", SbConstants.SYS_EXCEPTION);
+            model.addAttribute("info", Constants.SYS_EXCEPTION);
             return EXCEPTION_PAGE;
         }
         return "/main";
@@ -43,7 +43,7 @@ public class UserController extends BaseController {
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
         model.addAttribute("user", new UserBean());
-        session.removeAttribute(SbConstants.USER_KEY);
+        session.removeAttribute(Constants.USER_KEY);
         return "/login";
     }
 }

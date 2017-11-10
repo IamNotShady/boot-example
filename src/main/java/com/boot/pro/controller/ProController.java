@@ -6,7 +6,7 @@ import com.boot.common.base.BaseController;
 import com.boot.common.aop.LoggerAnnotation;
 import com.boot.user.bean.AjaxBean;
 import com.boot.util.RedisUtils;
-import com.boot.util.SbConstants;
+import com.boot.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class ProController extends BaseController {
             modelMap.addAttribute("proBean", bean);
         } catch (Exception e) {
             log.error(e.getMessage(),e);
-            modelMap.addAttribute("info", SbConstants.SYS_EXCEPTION);
+            modelMap.addAttribute("info", Constants.SYS_EXCEPTION);
             return EXCEPTION_PAGE;
         }
         return "/bas/bas_pro";

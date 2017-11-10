@@ -1,7 +1,7 @@
 package com.boot.user.bean;
 
 import com.alibaba.fastjson.JSONObject;
-import com.boot.util.SbConstants;
+import com.boot.util.Constants;
 
 public class AjaxBean {
 
@@ -10,8 +10,8 @@ public class AjaxBean {
     private JSONObject data;
 
     public AjaxBean(){
-        reCode = SbConstants.SUCCESS_FLAG;
-        reInfo = SbConstants.SUCCESS_MSG;
+        reCode = Constants.SUCCESS_FLAG;
+        reInfo = Constants.SUCCESS_MSG;
     }
 
     public String getReCode() {

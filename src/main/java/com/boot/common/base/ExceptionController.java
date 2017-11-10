@@ -3,7 +3,7 @@ package com.boot.common.base;
 import java.sql.SQLException;
 
 import com.boot.user.bean.AjaxBean;
-import com.boot.util.SbConstants;
+import com.boot.util.Constants;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class ExceptionController {
     public AjaxBean handleValidationException(BaseException baseException) {
         log.error(baseException.getMessage());
         AjaxBean ajaxBean = new AjaxBean();
-        ajaxBean.setReCode(SbConstants.SYS_FAIL_FLAG);
+        ajaxBean.setReCode(Constants.SYS_FAIL_FLAG);
         ajaxBean.setReInfo(baseException.getMessage());
         return ajaxBean;
     }
@@ -35,8 +35,8 @@ public class ExceptionController {
         log.error(sqlException.getMessage());
         sqlException.printStackTrace();
         AjaxBean ajaxBean = new AjaxBean();
-        ajaxBean.setReCode(SbConstants.SYS_FAIL_FLAG);
-        ajaxBean.setReInfo(SbConstants.SYS_EXCEPTION);
+        ajaxBean.setReCode(Constants.SYS_FAIL_FLAG);
+        ajaxBean.setReInfo(Constants.SYS_EXCEPTION);
         return ajaxBean;
     }
 
@@ -46,8 +46,8 @@ public class ExceptionController {
         log.error(exception.getMessage());
         exception.printStackTrace();
         AjaxBean ajaxBean = new AjaxBean();
-        ajaxBean.setReCode(SbConstants.SYS_FAIL_FLAG);
-        ajaxBean.setReInfo(SbConstants.SYS_EXCEPTION);
+        ajaxBean.setReCode(Constants.SYS_FAIL_FLAG);
+        ajaxBean.setReInfo(Constants.SYS_EXCEPTION);
         return ajaxBean;
     }
 }
