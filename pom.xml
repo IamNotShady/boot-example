@@ -19,7 +19,6 @@
 		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
-		<docker.image.prefix>spring-boot-web</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -117,28 +116,11 @@
 	</dependencies>
 
 	<build>
-		<finalName>spring-boot-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>com.spotify</groupId>-->
-				<!--<artifactId>docker-maven-plugin</artifactId>-->
-				<!--<version>0.4.3</version>-->
-				<!--<configuration>-->
-					<!--<imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-					<!--<dockerDirectory>src/main/docker</dockerDirectory>-->
-					<!--<resources>-->
-						<!--<resource>-->
-							<!--<targetPath>/</targetPath>-->
-							<!--<directory>${project.build.directory}</directory>-->
-							<!--<include>${project.build.finalName}.jar</include>-->
-						<!--</resource>-->
-					<!--</resources>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
 		</plugins>
 	</build>
 </project>
