@@ -14,6 +14,11 @@ public class Constants {
     public static final String DEFAULT_PERMS_KEY = "perms";
     // 成功认证的用户，默认的角色：（适用没有资源授权的用户）
     public static final String DEFAULT_ROLE = "user";
+    // 密码在map中的key
+    public static final String DEFAULT_PWD_KEY = "password";
+    // 用户身份唯一标识在Map中的key
+    public static final String DEFAULT_IDENTITY_KEY = "username";
+    public static final String DEFAULT_SALT_KEY = "salt";
 
     /**
      * 接口返回错误号

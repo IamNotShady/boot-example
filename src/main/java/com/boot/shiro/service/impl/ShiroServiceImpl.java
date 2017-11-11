@@ -3,6 +3,8 @@ package com.boot.shiro.service.impl;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Resource;
+
 import com.alibaba.fastjson.JSON;
 import com.boot.shiro.bean.*;
 import com.boot.shiro.mapper.PermissionMapper;
@@ -10,13 +12,17 @@ import com.boot.shiro.mapper.RoleMapper;
 import com.boot.shiro.mapper.RolePermissionMapper;
 import com.boot.shiro.mapper.UserRoleMapper;
 import com.boot.shiro.service.ShiroService;
+import com.boot.user.bean.UserBean;
+import com.boot.user.mapper.UserMapper;
 import com.boot.util.Constants;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -25,6 +31,7 @@ import tk.mybatis.mapper.entity.Example;
  * @Description
  * @Date Created on 2017/11/10
  */
+@Service
 public class ShiroServiceImpl implements ShiroService{
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -44,14 +51,20 @@ public class ShiroServiceImpl implements ShiroService{
     UserRoleMapper userRoleMapper;
 
     @Autowired
+    UserMapper userMapper;
+
+    @Resource(name="redisTemplate")
     private RedisTemplate<String, String> redisTemplate;
+
+    // 默认7天604800000
+    @Value("${global.session.expire}")
+    private long globalSessionTimeOut;
 
 
     @Override
     public Map<String, Collection<String>> getUserRolesAndPerms(Object uniqueIdentity) {
         Map<String, Collection<String>> maps = new HashMap<>(); ;
         String cacheKey = CACHE_ROLES_PREMS_PREFIX_KEY + uniqueIdentity;
-        long expireCache = 600000L;
         String cacheValues = redisTemplate.opsForValue().get(cacheKey);
         if (StringUtils.isNotBlank(cacheValues)) {
             RolesPermsCacheBean cacheObj = (RolesPermsCacheBean) JSON.parseObject(cacheValues, RolesPermsCacheBean.class);;
@@ -115,8 +128,23 @@ public class ShiroServiceImpl implements ShiroService{
             rolesAndPermsCache.setRoles(defaultRoles);
         }
         redisTemplate.opsForValue().set(cacheKey, rolesAndPermsCache.toString());
-        redisTemplate.expire(cacheKey, expireCache, TimeUnit.MILLISECONDS);
+        redisTemplate.expire(cacheKey, globalSessionTimeOut, TimeUnit.MILLISECONDS);
         logger.debug("set cache roles and perms: {} ==> {}", uniqueIdentity, rolesAndPermsCache);
         return maps;
+    }
+
+    @Override
+    public Map<String, Object> getUserUniqueIdentityAndPassword(String userName) {
+        UserBean userBean  = new UserBean();
+        userBean.setUsername(userName);
+        userBean = userMapper.selectOne(userBean);
+        if (userBean != null) {
+            Map<String, Object> map = new HashMap<>();
+            map.put(Constants.DEFAULT_IDENTITY_KEY, userBean.getUsername());
+            map.put(Constants.DEFAULT_PWD_KEY, userBean.getPassword());
+            map.put(Constants.DEFAULT_SALT_KEY, userBean.getPwdsalt());
+            return map;
+        }
+        return null;
     }
 }

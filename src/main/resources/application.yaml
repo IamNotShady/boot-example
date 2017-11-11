@@ -76,3 +76,5 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
   #returnPageInfo: check
+
+global.session.expire: 604800000

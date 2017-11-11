@@ -1,9 +1,12 @@
 package com.boot.common.config;
 
 
+import java.lang.reflect.Method;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -20,8 +23,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.lang.reflect.Method;
 
 @Configuration
 @EnableCaching
@@ -51,13 +52,20 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
-        // Number of seconds before expiration. Defaults to unlimited (0)
         cacheManager.setDefaultExpiration(300); //设置key-value超时时间 秒
         return cacheManager;
     }
 
-    @Bean(name="masterRedis")
-    public RedisTemplate<String, String> redisTemplate(@Qualifier("master")RedisConnectionFactory factory) {
+    @Bean(name="redisTemplate")
+    public RedisTemplate redisTemplate(@Qualifier("master")RedisConnectionFactory factory) {
+        StringRedisTemplate template = new StringRedisTemplate(factory);
+        setSerializer(template); //设置序列化工具，这样不需要实现Serializable接口
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    @Bean(name="sessionRedis")
+    public RedisTemplate sessionRedis(@Qualifier("master")RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
         setSerializer(template); //设置序列化工具，这样不需要实现Serializable接口
         template.afterPropertiesSet();

@@ -36,7 +36,7 @@ public class ExceptionController {
         sqlException.printStackTrace();
         AjaxBean ajaxBean = new AjaxBean();
         ajaxBean.setReCode(Constants.SYS_FAIL_FLAG);
-        ajaxBean.setReInfo(Constants.SYS_EXCEPTION);
+        ajaxBean.setReInfo(Constants.SYS_FAIL_MSG);
         return ajaxBean;
     }
 
@@ -47,7 +47,7 @@ public class ExceptionController {
         exception.printStackTrace();
         AjaxBean ajaxBean = new AjaxBean();
         ajaxBean.setReCode(Constants.SYS_FAIL_FLAG);
-        ajaxBean.setReInfo(Constants.SYS_EXCEPTION);
+        ajaxBean.setReInfo(Constants.SYS_FAIL_MSG);
         return ajaxBean;
     }
 }

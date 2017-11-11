@@ -25,7 +25,6 @@ public class UserController extends BaseController {
     public String login(Model model,UserBean pubUserBean) {
         try {
             UserBean user = pubUserService.getUserByName(pubUserBean);
-            session.setAttribute(Constants.USER_KEY, user);
         } catch (BaseException e) {
             log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
@@ -33,7 +32,7 @@ public class UserController extends BaseController {
             return "login";
         } catch (Exception e) {
             log.error(e.getMessage(),e);
-            model.addAttribute("info", Constants.SYS_EXCEPTION);
+            model.addAttribute("info", Constants.SYS_FAIL_MSG);
             return EXCEPTION_PAGE;
         }
         return "/main";
@@ -43,7 +42,6 @@ public class UserController extends BaseController {
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
         model.addAttribute("user", new UserBean());
-        session.removeAttribute(Constants.USER_KEY);
         return "/login";
     }
 }

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.boot.shiro.service.ShiroService;
+import com.boot.util.Constants;
 import com.boot.util.ShiroUtils;
 
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -41,16 +42,14 @@ public  abstract class AuthorizationBaseRealm extends AuthorizingRealm {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 // roles | perms
                 Map<String, Collection<String>> rolesAndPerms = shiroService.getUserRolesAndPerms(userid);
-                Collection<String> roles = rolesAndPerms.get(DEFAULT_ROLES_KEY);
-                Collection<String> perms = rolesAndPerms.get(DEFAULT_PERMS_KEY);
-
+                Collection<String> roles = rolesAndPerms.get(Constants.DEFAULT_ROLES_KEY);
+                Collection<String> perms = rolesAndPerms.get(Constants.DEFAULT_PERMS_KEY);
                 if (!CollectionUtils.isEmpty(roles)) {
                     info.addRoles(roles);
                 }
                 if (!CollectionUtils.isEmpty(perms)) {
                     info.addStringPermissions(perms);
                 }
-
                 return info;
             } else {
                 logger.error("id is empty!!!");

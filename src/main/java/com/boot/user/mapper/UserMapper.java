@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<UserBean> {
 
-	UserBean getUserByName(String loginName);
 
 }

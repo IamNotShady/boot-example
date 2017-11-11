@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisUtils {
 
-    @Resource(name="masterRedis")
+    @Resource(name="redisTemplate")
     private RedisTemplate redisTemplate;
     /**
      * 批量删除对应的value

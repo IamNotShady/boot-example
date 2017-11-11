@@ -41,7 +41,7 @@ public class ProController extends BaseController {
             modelMap.addAttribute("proBean", bean);
         } catch (Exception e) {
             log.error(e.getMessage(),e);
-            modelMap.addAttribute("info", Constants.SYS_EXCEPTION);
+            modelMap.addAttribute("info", Constants.SYS_FAIL_MSG);
             return EXCEPTION_PAGE;
         }
         return "/bas/bas_pro";
