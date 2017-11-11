@@ -7,8 +7,6 @@
 * SpringMvc
 * Mybatis
 * Druid
-* Interceptor
-* Filter
 * FastJson
 * Thymeleaf
 * Pagehelper
