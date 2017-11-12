@@ -21,10 +21,10 @@
     <div class="loginbox">
       <ul>
         <li>
-          <input name="login_name" id="login_name" type="text" class="loginuser" th:value="${user.login_name}"/>
+          <input name="username" id="username" type="text" class="loginuser" th:value="${user.username}"/>
         </li>
         <li>
-          <input name="pass_word" id="pass_word" type="pass_word" class="loginpwd" th:value="${user.pass_word}"/>
+          <input name="password" id="password" type="password" class="loginpwd" th:value="${user.password}"/>
         </li>
         <li>
           <input name="b_submit" id="b_submit" type="button" class="loginbtn" value="登录"/>
@@ -35,7 +35,6 @@
   </div>
 </form>
 <input name="error_info" id="error_info" type="hidden" class="loginbtn" th:value="${info}"/>
-<div class="loginbm">Copyright © 2002 - 2017 合肥维天运通信息科技股份有限公司</div>
 <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}" src="../static/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" th:src="@{/js/artDialog/jquery.artDialog.js}" src="../static/js/artDialog/jquery.artDialog.js"></script>
 <script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}" src="../static/js/artDialog/plugins/iframeTools.js"></script>
@@ -52,8 +51,8 @@
 $(document).ready(function(e){
 	//验证
 	var regForm = function(){	
-		var loginName = $.trim($('#login_name').val());
-		var pass_word = $.trim($('#pass_word').val());
+		var loginName = $.trim($('#username').val());
+		var pass_word = $.trim($('#password').val());
 		if(loginName==''){
             artDialog.alert('用户名不能为空！');
 			return false;

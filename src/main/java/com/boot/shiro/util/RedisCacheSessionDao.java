@@ -23,29 +23,26 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String RCE_SESSION_KEY_PREFIX = "rce_session_";
+    private static final String RCE_SESSION_KEY_PREFIX = "session_";
 
     @Value("${global.session.expire}")
-    private long globalSessionTimeOut;
+    private long globalSessionTimeOut = 604800000L;
 
-    private final long globalTimeOut;
-
-    @Resource(name="sessionRedis")
+    @Resource(name="redisTemplate")
     private RedisTemplate<Serializable, Session> redisTemplate;
 
     public RedisCacheSessionDao() {
         if (globalSessionTimeOut == 0) {
-                globalSessionTimeOut = 604800000L;
+            globalSessionTimeOut = 604800000L;
         }
-        globalTimeOut = globalSessionTimeOut + 1000 * 60 * 60 * 3;
-        logger.info("REDIS GLOBAL SESSION REAL TIMEOUT: {}", globalTimeOut);
+        logger.info("REDIS GLOBAL SESSION REAL TIMEOUT: {}", globalSessionTimeOut);
     }
 
     @Override
     protected void doUpdate(Session session) {
         String sessionKey = RCE_SESSION_KEY_PREFIX + session.getId();
         redisTemplate.opsForValue().set(sessionKey, session);
-        redisTemplate.expire(sessionKey, globalTimeOut, TimeUnit.MILLISECONDS);
+        redisTemplate.expire(sessionKey, globalSessionTimeOut, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -63,7 +60,7 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
 
         String sessionKey = RCE_SESSION_KEY_PREFIX + sessionId;
         redisTemplate.opsForValue().set(sessionKey, session);
-        redisTemplate.expire(sessionKey, globalTimeOut, TimeUnit.MILLISECONDS);
+        redisTemplate.expire(sessionKey, globalSessionTimeOut, TimeUnit.MILLISECONDS);
 
         return sessionId;
     }

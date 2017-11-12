@@ -4,7 +4,7 @@
 <mapper namespace="com.boot.pro.mapper.ProMapper">
     <select id="getBasProList" useCache="false"  parameterType="ProBean"
             resultType="ProBean">
-        SELECT id,pro_name,pro_code,DATE_FORMAT(created_time,'%Y-%m-%d %H:%i:%s') created_time FROM t_sb_pro
+        SELECT id,pro_name,pro_code,DATE_FORMAT(create_dt,'%Y-%m-%d %H:%i:%s') create_dt FROM t_pro
         WHERE 1=1
         <if test="pro_name != null and pro_name != ''">
             AND pro_name like CONCAT(CONCAT('%',#{pro_name}),'%')
@@ -12,7 +12,7 @@
         <if test="pro_code != null and pro_code != ''">
             AND pro_code like CONCAT(CONCAT('%',#{pro_code}),'%')
         </if>
-        ORDER BY created_time DESC
+        ORDER BY create_dt DESC
     </select>
 </mapper>
 

@@ -12,6 +12,8 @@ import com.boot.common.base.BaseBean;
 @Table(name = "t_pro")
 public class ProBean extends BaseBean implements Serializable {
 
+	private static final long serialVersionUID = -2295008401186313139L;
+
 	@Id
 	private Long id;
 	@Column
