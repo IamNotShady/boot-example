@@ -59,7 +59,7 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
-    @Bean
+    @Bean(name = "securityManager")
     public SecurityManager getDefaultWebSecurityManager(
             ModularRealmAuthenticator authenticator, DefaultWebSessionManager sessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -140,6 +140,7 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
+    @Bean(name = "credentialsMatcher")
     public Sha256CredentialsMatcher getCredentialsMatcher(){
         Sha256CredentialsMatcher sha256CredentialsMatcher = new Sha256CredentialsMatcher();
         sha256CredentialsMatcher.setHashAlgorithmName("SHA-1");
