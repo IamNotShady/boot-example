@@ -31,7 +31,7 @@ public class LoginRealm extends AuthorizationBaseRealm{
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         Map<String, Object> info = null;
-
+        logger.info("开始认证");
         if (token instanceof UsernamePasswordToken) {
             UsernamePasswordToken authToken = (UsernamePasswordToken) token;
             info = shiroService.getUserUniqueIdentityAndPassword(authToken.getUsername());

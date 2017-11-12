@@ -26,7 +26,7 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
     private static final String RCE_SESSION_KEY_PREFIX = "session_";
 
     @Value("${global.session.expire}")
-    private long globalSessionTimeOut = 604800000L;
+    private long globalSessionTimeOut;
 
     @Resource(name="redisTemplate")
     private RedisTemplate<Serializable, Session> redisTemplate;

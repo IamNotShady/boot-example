@@ -1,12 +1,13 @@
 package com.boot.user.controller;
 
+import com.boot.common.aop.LoggerAnnotation;
 import com.boot.common.base.BaseController;
 import com.boot.common.base.BaseException;
-import com.boot.common.aop.LoggerAnnotation;
 import com.boot.user.bean.UserBean;
 import com.boot.user.service.UserService;
 import com.boot.util.Constants;
 
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,24 +26,30 @@ public class UserController extends BaseController {
     public String login(Model model,UserBean pubUserBean) {
         try {
             UserBean user = pubUserService.getUserByName(pubUserBean);
+            session.setAttribute("user",user);
         } catch (BaseException e) {
             log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
             model.addAttribute("info", e.getMessage());
-            session.setAttribute("user",pubUserBean);
-            return "login";
+            return "/login";
         } catch (Exception e) {
             log.error(e.getMessage(),e);
             model.addAttribute("info", Constants.SYS_FAIL_MSG);
             return EXCEPTION_PAGE;
         }
-        return "/main";
+        return "redirect:/main";
     }
 
     @RequestMapping("logout")
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
-        model.addAttribute("user", new UserBean());
+        //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
+        SecurityUtils.getSubject().logout();
         return "/login";
+    }
+
+    @RequestMapping("main")
+    public String main(Model model) {
+        return "/main";
     }
 }
