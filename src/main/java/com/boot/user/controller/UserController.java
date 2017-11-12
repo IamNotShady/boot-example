@@ -29,6 +29,7 @@ public class UserController extends BaseController {
             log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
             model.addAttribute("info", e.getMessage());
+            session.setAttribute("user",pubUserBean);
             return "login";
         } catch (Exception e) {
             log.error(e.getMessage(),e);

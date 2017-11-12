@@ -79,7 +79,7 @@ $(document).ready(function(){
       <tr th:each="pro:${proBean.proList}">
         <td style="width:180px;" th:text="${pro.pro_code}">xxxxx</td>
         <td style="width:220px" th:text="${pro.pro_name}">xxxxx</td>
-        <td style="width:220px" th:text="${pro.created_time}">time</td>
+        <td style="width:220px" th:text="${pro.create_dt}">time</td>
         <td style="width:120px;text-indent:15px;">
         <a ty="bas_pro_del" th:rel="${pro.id}" class="tablelink bas_pro_del">删除</a>
         </td>
