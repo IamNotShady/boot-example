@@ -113,7 +113,6 @@ public class ShiroConfig {
         sessionManager.setGlobalSessionTimeout(globalSessionTimeOut);
         sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.isDeleteInvalidSessions();
-
         return sessionManager;
     }
 
