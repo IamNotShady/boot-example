@@ -20,7 +20,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -55,11 +54,6 @@ public class ShiroServiceImpl implements ShiroService{
 
     @Resource(name="redisTemplate")
     private RedisTemplate<String, String> redisTemplate;
-
-    // 默认7天604800000
-    @Value("${global.session.expire}")
-    private long globalSessionTimeOut;
-
 
     @Override
     public Map<String, Collection<String>> getUserRolesAndPerms(Object uniqueIdentity) {
@@ -128,7 +122,8 @@ public class ShiroServiceImpl implements ShiroService{
             rolesAndPermsCache.setRoles(defaultRoles);
         }
         redisTemplate.opsForValue().set(cacheKey, rolesAndPermsCache.toString());
-        redisTemplate.expire(cacheKey, globalSessionTimeOut, TimeUnit.MILLISECONDS);
+
+        redisTemplate.expire(cacheKey, Constants.GLOBAL_SESSION_TIMEOUT, TimeUnit.MILLISECONDS);
         logger.debug("set cache roles and perms: {} ==> {}", uniqueIdentity, rolesAndPermsCache);
         return maps;
     }

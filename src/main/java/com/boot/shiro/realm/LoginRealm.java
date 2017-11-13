@@ -31,19 +31,17 @@ public class LoginRealm extends AuthorizationBaseRealm{
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         Map<String, Object> info = null;
-
+        logger.info("开始认证");
         if (token instanceof UsernamePasswordToken) {
             UsernamePasswordToken authToken = (UsernamePasswordToken) token;
             info = shiroService.getUserUniqueIdentityAndPassword(authToken.getUsername());
         }
-
         boolean flag = info == null || info.isEmpty() || info.get(Constants.DEFAULT_IDENTITY_KEY) == null
                 || info.get(Constants.DEFAULT_PWD_KEY) == null;
         if (!flag) {
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
                     info.get(Constants.DEFAULT_IDENTITY_KEY), info.get(Constants.DEFAULT_PWD_KEY), getName());
             simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(info.get(DEFAULT_SALT_KEY)));
-
             logger.info("verify account success. usernaame: {}", info.get(Constants.DEFAULT_IDENTITY_KEY));
             return simpleAuthenticationInfo;
         } else {

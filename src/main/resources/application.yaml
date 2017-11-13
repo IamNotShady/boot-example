@@ -77,4 +77,5 @@ pagehelper:
   params: count=countSql
   #returnPageInfo: check
 
-global.session.expire: 604800000
+shiro:
+  globalSessionTimeOut : 604800000

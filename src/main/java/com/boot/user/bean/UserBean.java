@@ -1,5 +1,6 @@
 package com.boot.user.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -7,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "t_user")
-public class UserBean {
+public class UserBean implements Serializable{
 
+    private static final long serialVersionUID = 9129370215157758832L;
     @Id
     private Long id;
     @Column
