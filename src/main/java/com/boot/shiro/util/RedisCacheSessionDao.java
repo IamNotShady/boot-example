@@ -5,13 +5,13 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
+import com.boot.util.Constants;
 import com.boot.util.ShortUuid;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
@@ -25,8 +25,7 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
 
     private static final String RCE_SESSION_KEY_PREFIX = "session_";
 
-    @Value("${global.session.expire}")
-    private long globalSessionTimeOut;
+    private long globalSessionTimeOut = Constants.GLOBAL_SESSION_TIMEOUT;
 
     @Resource(name="redisTemplate")
     private RedisTemplate<Serializable, Session> redisTemplate;

@@ -31,7 +31,7 @@ public class UserController extends BaseController {
             log.error(e.getMessage(),e);
             model.addAttribute("user", pubUserBean);
             model.addAttribute("info", e.getMessage());
-            return "/login";
+            return "redirect:/";
         } catch (Exception e) {
             log.error(e.getMessage(),e);
             model.addAttribute("info", Constants.SYS_FAIL_MSG);

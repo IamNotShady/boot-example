@@ -3,11 +3,6 @@ package com.boot.util;
 public class Constants {
 
     /**
-     * 需要拦截session是否失效的控制器数组
-     */
-    public static final String[] intercepter_array = {"bas"};
-
-    /**
      * shiro
      */
     public static final String DEFAULT_ROLES_KEY = "roles";
@@ -19,6 +14,7 @@ public class Constants {
     // 用户身份唯一标识在Map中的key
     public static final String DEFAULT_IDENTITY_KEY = "username";
     public static final String DEFAULT_SALT_KEY = "salt";
+    public static final long GLOBAL_SESSION_TIMEOUT = 604800000L;
 
     /**
      * 接口返回错误号

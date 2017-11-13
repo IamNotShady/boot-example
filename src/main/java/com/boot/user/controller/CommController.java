@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     @LoggerAnnotation(description="PubCommController.index")
     public String index(Model model) {
         UserBean pubUserBean = new UserBean();
         model.addAttribute("user", pubUserBean);
-        return "/login";
+        return "/index";
     }
 
     @RequestMapping("*")
