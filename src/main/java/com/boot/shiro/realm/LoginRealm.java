@@ -18,9 +18,6 @@ public class LoginRealm extends AuthorizationBaseRealm{
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String DEFAULT_PWD_KEY = "password";
-    private static final String DEFAULT_IDENTITY_KEY = "username";
-    private static final String DEFAULT_SALT_KEY = "salt";
     /**
      * 认证-登录
      *
@@ -41,7 +38,7 @@ public class LoginRealm extends AuthorizationBaseRealm{
         if (!flag) {
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
                     info.get(Constants.DEFAULT_IDENTITY_KEY), info.get(Constants.DEFAULT_PWD_KEY), getName());
-            simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(info.get(DEFAULT_SALT_KEY)));
+            simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(info.get(Constants.DEFAULT_SALT_KEY)));
             logger.info("verify account success. usernaame: {}", info.get(Constants.DEFAULT_IDENTITY_KEY));
             return simpleAuthenticationInfo;
         } else {
