@@ -9,30 +9,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CommController extends BaseController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/index")
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     @LoggerAnnotation(description="PubCommController.index")
     public String index(Model model) {
-        UserBean pubUserBean = new UserBean();
-        model.addAttribute("user", pubUserBean);
-        return "/index";
+        model.addAttribute("user", new UserBean());
+        return "redirect:/login";
     }
 
-    @RequestMapping("*")
+    @RequestMapping(value = "*",method = RequestMethod.GET)
     public String page404() {
         return "/404";
     }
 
-    @RequestMapping("left")
+    @RequestMapping(value = "left",method = RequestMethod.GET)
     public String left() {
         return "/left";
     }
 
-    @RequestMapping("welcome")
+    @RequestMapping(value ="welcome",method = RequestMethod.GET)
     public String welcome() {
         return "/welcome";
     }

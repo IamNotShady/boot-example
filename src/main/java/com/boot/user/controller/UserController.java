@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController extends BaseController {
@@ -21,7 +22,13 @@ public class UserController extends BaseController {
     @Autowired
     private UserService pubUserService;
 
-    @RequestMapping("login")
+    @RequestMapping(value = "login",method = RequestMethod.GET)
+    public String intoLogin(Model model) {
+        model.addAttribute("user", new UserBean());
+        return "/login";
+    }
+
+    @RequestMapping(value = "login",method = RequestMethod.POST)
     @LoggerAnnotation(description="PubUserController.login")
     public String login(Model model,UserBean pubUserBean) {
         try {
@@ -40,7 +47,7 @@ public class UserController extends BaseController {
         return "redirect:/main";
     }
 
-    @RequestMapping("logout")
+    @RequestMapping(value = "logout",method = RequestMethod.GET)
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
@@ -48,7 +55,7 @@ public class UserController extends BaseController {
         return "/login";
     }
 
-    @RequestMapping("main")
+    @RequestMapping(value = "main",method = RequestMethod.GET)
     public String main(Model model) {
         return "/main";
     }
