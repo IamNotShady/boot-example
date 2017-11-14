@@ -21,11 +21,11 @@
 #### Docker部署
 1. 构建镜像
     
-    `进入项目根目录执行 docker build -t spring-boot-web:latest -f ./Dockerfile ./`
+    `进入项目根目录执行 docker build -t SpringBoot-web:latest -f ./Dockerfile ./`
  
 2. 生成并运行容器
 
-    `docker run --name spring-boot-web -p 8080:8080 spring-boot-web:latest`
+    `docker run --name SpringBoot-web -p 8080:8080 SpringBoot-webF:latest`
 `
 
 
