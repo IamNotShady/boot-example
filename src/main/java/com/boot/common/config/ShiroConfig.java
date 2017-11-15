@@ -1,10 +1,9 @@
 package com.boot.common.config;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.DispatcherType;
 
 import com.boot.shiro.realm.LoginRealm;
 import com.boot.shiro.util.CustomAtLeastOneSuccessfulStrategy;
@@ -20,18 +19,14 @@ import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.web.filter.DelegatingFilterProxy;
-import org.thymeleaf.expression.Maps;
 
 /**
  * @Author zxx
@@ -42,41 +37,22 @@ import org.thymeleaf.expression.Maps;
 public class ShiroConfig {
 
     @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
-        FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
-        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
-        filterRegistration.setEnabled(true);
-        filterRegistration.addUrlPatterns("/*");
-        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);
-        return filterRegistration;
-    }
-
-    /**
-     * @see org.apache.shiro.spring.web.ShiroFilterFactoryBean
-     * @return
-     */
-    @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
-        ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
-        bean.setSecurityManager(getDefaultWebSecurityManager());
-        bean.setLoginUrl("/login");
-        bean.setUnauthorizedUrl("/unauthor");
-
-        Map<String, Filter>filters = Maps.newHashMap();
-        filters.put("perms", urlPermissionsFilter());
-        filters.put("anon", new AnonymousFilter());
-        bean.setFilters(filters);
-
-        Map<String, String> chains = Maps.newHashMap();
-        chains.put("/login", "anon");
-        chains.put("/unauthor", "anon");
-        chains.put("/logout", "logout");
-        chains.put("/base/**", "anon");
-        chains.put("/css/**", "anon");
-        chains.put("/layer/**", "anon");
-        chains.put("/**", "perms");
-        bean.setFilterChainDefinitionMap(chains);
-        return bean;
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/login", "anon");
+        //以下是一个坑，当登录页面加载资源文件时会被/**匹配
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/bas/**", "user");
+        filterChainDefinitionMap.put("/**", "authc");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/main");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        return shiroFilterFactoryBean;
     }
 
     @Bean

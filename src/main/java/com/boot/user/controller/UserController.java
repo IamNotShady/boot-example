@@ -22,13 +22,13 @@ public class UserController extends BaseController {
     @Autowired
     private UserService pubUserService;
 
-    @RequestMapping(value = "login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String intoLogin(Model model) {
         model.addAttribute("user", new UserBean());
         return "/login";
     }
 
-    @RequestMapping(value = "login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     @LoggerAnnotation(description="PubUserController.login")
     public String login(Model model,UserBean pubUserBean) {
         try {
@@ -47,7 +47,7 @@ public class UserController extends BaseController {
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "logout",method = RequestMethod.GET)
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
     @LoggerAnnotation(description="PubUserController.logout")
     public String logout(Model model) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
@@ -55,7 +55,7 @@ public class UserController extends BaseController {
         return "/login";
     }
 
-    @RequestMapping(value = "main",method = RequestMethod.GET)
+    @RequestMapping(value = "/main",method = RequestMethod.GET)
     public String main(Model model) {
         return "/main";
     }

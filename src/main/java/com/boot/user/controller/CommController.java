@@ -27,12 +27,12 @@ public class CommController extends BaseController {
         return "/404";
     }
 
-    @RequestMapping(value = "left",method = RequestMethod.GET)
+    @RequestMapping(value = "/left",method = RequestMethod.GET)
     public String left() {
         return "/left";
     }
 
-    @RequestMapping(value ="welcome",method = RequestMethod.GET)
+    @RequestMapping(value ="/welcome",method = RequestMethod.GET)
     public String welcome() {
         return "/welcome";
     }
