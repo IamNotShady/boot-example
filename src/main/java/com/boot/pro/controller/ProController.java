@@ -63,7 +63,7 @@ public class ProController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/inspro", method = RequestMethod.POST)
+    @RequestMapping(value = "/inspro", method = RequestMethod.PUT)
     @LoggerAnnotation(description="BasProController.inspro")
     @ResponseBody
     public AjaxBean inspro(ProBean bean) throws Exception {
@@ -77,7 +77,7 @@ public class ProController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/insproerr", method = RequestMethod.POST)
+    @RequestMapping(value = "/insproerr", method = RequestMethod.PUT)
     @LoggerAnnotation(description="BasProController.insproerr")
     @ResponseBody
     public AjaxBean insproerr(ProBean bean) throws Exception {
@@ -91,7 +91,7 @@ public class ProController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/delpro/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delpro/{id}", method = RequestMethod.DELETE)
     @LoggerAnnotation(description="BasProController.delBasPro")
     @ResponseBody
     public AjaxBean delBasPro(@PathVariable String id) throws Exception {

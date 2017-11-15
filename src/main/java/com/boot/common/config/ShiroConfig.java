@@ -37,15 +37,20 @@ import org.springframework.context.annotation.DependsOn;
 public class ShiroConfig {
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBeanF(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-        //<!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
-        //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/sbweb/index", "anon");
-        filterChainDefinitionMap.put("/sbweb/bas/**", "user");
-        filterChainDefinitionMap.put("/sbweb/**", "authc");
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/login", "anon");
+        //以下是一个坑，当登录页面加载资源文件时会被/**匹配
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/bas/**", "user");
+        filterChainDefinitionMap.put("/**", "authc");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/main");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

@@ -114,7 +114,7 @@ $(document).ready(function(){
         art.dialog.confirm('确定删除这条产品信息吗？', function() {
             $.ajax({
                 url:'/sbweb/bas/delpro/' + id,
-                type:'GET',
+                type:'DELETE',
                 async: false,
                 dataType:"json",
                 error: function (res) {
