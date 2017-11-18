@@ -9,7 +9,7 @@ public class AjaxBean {
     private String reInfo;
     private JSONObject data;
 
-    public AjaxBean(){
+    public AjaxBean() {
         reCode = Constants.SUCCESS_FLAG;
         reInfo = Constants.SUCCESS_MSG;
     }
@@ -17,18 +17,23 @@ public class AjaxBean {
     public String getReCode() {
         return reCode;
     }
+
     public void setReCode(String reCode) {
         this.reCode = reCode;
     }
+
     public String getReInfo() {
         return reInfo;
     }
+
     public void setReInfo(String reInfo) {
         this.reInfo = reInfo;
     }
+
     public JSONObject getData() {
         return data;
     }
+
     public void setData(JSONObject data) {
         this.data = data;
     }

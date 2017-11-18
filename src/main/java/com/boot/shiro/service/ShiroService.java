@@ -19,8 +19,9 @@ public interface ShiroService {
 
     /**
      * 获取用户的唯一标识和密码以及用户状态，此方法必须实现
-     * @link com.boot.shiro.realm.LoginRealm
+     *
      * @return map
+     * @link com.boot.shiro.realm.LoginRealm
      */
     Map<String, Object> getUserUniqueIdentityAndPassword(String userName);
 

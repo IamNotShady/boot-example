@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "t_user")
-public class UserBean implements Serializable{
+public class UserBean implements Serializable {
 
     private static final long serialVersionUID = 9129370215157758832L;
     @Id

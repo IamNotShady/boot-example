@@ -3,8 +3,7 @@ package com.boot.common.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Created by zhouxiaoxiao on 17/4/20.
- * 此类为映射配置文件中druid的属性
+ * Created by zhouxiaoxiao on 17/4/20. 此类为映射配置文件中druid的属性
  */
 
 @ConfigurationProperties(prefix = "druid")
@@ -57,7 +56,8 @@ public class DruidProperties {
         return maxPoolPreparedStatementPerConnectionSize;
     }
 
-    public void setMaxPoolPreparedStatementPerConnectionSize(int maxPoolPreparedStatementPerConnectionSize) {
+    public void setMaxPoolPreparedStatementPerConnectionSize(
+            int maxPoolPreparedStatementPerConnectionSize) {
         this.maxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize;
     }
 

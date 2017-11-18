@@ -1,35 +1,41 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>提示页面</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="pragma" content="no-cache"/>
-<meta http-equiv="cache-control" content="no-cache"/>
-<meta http-equiv="expires" content="0"/>
-<style type="text/css">
-html {
-	margin: 0;
-	padding: 0;
-}
-body {
-	font: 12px/1.5em '微软雅黑', 'Tahoma', 'simsun', sans-serif;
-	background: #FFF;
-	margin: 0;
-	padding: 0;
-	background: #FFFFFF;
-	background-color: #666;
-}
-.si {
-	padding-top:15px;
-	height:20px;
-	line-height:20px;
-	width:auto;
-}
-</style>
+  <title>提示页面</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="pragma" content="no-cache"/>
+  <meta http-equiv="cache-control" content="no-cache"/>
+  <meta http-equiv="expires" content="0"/>
+  <style type="text/css">
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font: 12px/1.5em '微软雅黑', 'Tahoma', 'simsun', sans-serif;
+      background: #FFF;
+      margin: 0;
+      padding: 0;
+      background: #FFFFFF;
+      background-color: #666;
+    }
+
+    .si {
+      padding-top: 15px;
+      height: 20px;
+      line-height: 20px;
+      width: auto;
+    }
+  </style>
 </head>
 <body>
-<div style="margin:120px auto 0 auto; padding:auto; width:850px; height:120px; line-height:120px; font-size:28px; font-weight:bold; background-color:#CCC">抱歉，<span th:text="${info}">错误信息</span>。<span style="color:#00F; cursor:pointer;" onClick="history.go(-1)">点击返回</span></div>
-<div style="margin:auto; padding:auto; width:850px; height:250px; font-size:18px; background-color:#FFF">
+<div
+    style="margin:120px auto 0 auto; padding:auto; width:850px; height:120px; line-height:120px; font-size:28px; font-weight:bold; background-color:#CCC">
+  抱歉，<span th:text="${info}">错误信息</span>。<span style="color:#00F; cursor:pointer;"
+                                               onClick="history.go(-1)">点击返回</span></div>
+<div
+    style="margin:auto; padding:auto; width:850px; height:250px; font-size:18px; background-color:#FFF">
   <div class="si">1 如果是web服务器繁忙，可以稍后访问该页面。</div>
   <div class="si">2 如果是web服务器错误页面被缓存，试着清空浏览器的缓存文件与cookie，重新访问。</div>
   <div class="si">3 如果是浏览器兼容问题，请选用主流浏览器访问，推荐IE8，IE9，IE10。</div>

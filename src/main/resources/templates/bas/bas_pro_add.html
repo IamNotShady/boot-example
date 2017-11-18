@@ -1,55 +1,56 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>bas</title>
-    <link th:href="@{/css/openz.css}" rel="stylesheet" type="text/css" href="../../static/css/openz.css"/>
-    <link rel="stylesheet" th:href="@{/js/artDialog/skins/blue.css}" type="text/css"
-          href="../../static/js/artDialog/skins/blue.css"/>
-    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"
-            src="../../static/js/jquery-1.8.3.min.js"></script>
-    <style type="text/css">
-        .scinput {
-            width: 150px;
-            height: 32px;
-            line-height: 32px;
-            border-top: solid 1px #a7b5bc;
-            border-left: solid 1px #a7b5bc;
-            border-right: solid 1px #ced9df;
-            border-bottom: solid 1px #ced9df;
-            text-indent: 10px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".click").click(function () {
-                $(".tip").fadeIn(200);
-            });
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>bas</title>
+  <link th:href="@{/css/openz.css}" rel="stylesheet" type="text/css"
+        href="../../static/css/openz.css"/>
+  <link rel="stylesheet" th:href="@{/js/artDialog/skins/blue.css}" type="text/css"
+        href="../../static/js/artDialog/skins/blue.css"/>
+  <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"
+          src="../../static/js/jquery-1.8.3.min.js"></script>
+  <style type="text/css">
+    .scinput {
+      width: 150px;
+      height: 32px;
+      line-height: 32px;
+      border-top: solid 1px #a7b5bc;
+      border-left: solid 1px #a7b5bc;
+      border-right: solid 1px #ced9df;
+      border-bottom: solid 1px #ced9df;
+      text-indent: 10px;
+    }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".click").click(function () {
+        $(".tip").fadeIn(200);
+      });
 
-            $(".tiptop a").click(function () {
-                $(".tip").fadeOut(200);
-            });
+      $(".tiptop a").click(function () {
+        $(".tip").fadeOut(200);
+      });
 
-            $(".sure").click(function () {
-                $(".tip").fadeOut(100);
-            });
+      $(".sure").click(function () {
+        $(".tip").fadeOut(100);
+      });
 
-            $(".cancel").click(function () {
-                $(".tip").fadeOut(100);
-            });
-        });
-    </script>
+      $(".cancel").click(function () {
+        $(".tip").fadeOut(100);
+      });
+    });
+  </script>
 </head>
 <body>
 <div class="main-con">
-    <div class="content"> <span>
+  <div class="content"> <span>
     <label class="t-a">产品编号：</label>
     <input class="ipt1 scinput" id="pro_code" name="pro_code" type="text" maxlength="32"/>
     </span> <span>
     <label class="t-a">产品名称：</label>
     <input class="ipt1 scinput" type="text" id="pro_name" name="pro_name" maxlength="32"/>
     </span></div>
-    <div class="btnipt content"> <span>
+  <div class="btnipt content"> <span>
     <input id="btn_save" class="scbtn" type="button" value="添加"/>
     </span> <span>
     <input id="btn_cancel" class="scbtn" type="button" value="取消"/>
@@ -60,88 +61,88 @@
 <script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}"
         src="../../static/js/artDialog/plugins/iframeTools.js"></script>
 <script type="text/javascript">
-    var origin = artDialog.open.origin;
-    $(document).ready(function () {
-        //添加
-        $("#btn_save").click(function () {
-            //获取参数
-            var pro_code = $("#pro_code").val().replace(/\s+/g, "");
-            var pro_name = $("#pro_name").val().replace(/\s+/g, "");
-            if (pro_code == '') {
-                art.dialog.alert("产品编号不能为空！", 'face-sad');
-                return;
-            }
-            if (pro_name == '') {
-                art.dialog.alert("产品名称不能为空！", 'face-sad');
-                return;
-            }
-            if (pro_code == '888') {
-                addBasProAjaxErr(pro_code, pro_name);
-            } else {
-                addBasProAjax(pro_code, pro_name);
-            }
+  var origin = artDialog.open.origin;
+  $(document).ready(function () {
+    //添加
+    $("#btn_save").click(function () {
+      //获取参数
+      var pro_code = $("#pro_code").val().replace(/\s+/g, "");
+      var pro_name = $("#pro_name").val().replace(/\s+/g, "");
+      if (pro_code == '') {
+        art.dialog.alert("产品编号不能为空！", 'face-sad');
+        return;
+      }
+      if (pro_name == '') {
+        art.dialog.alert("产品名称不能为空！", 'face-sad');
+        return;
+      }
+      if (pro_code == '888') {
+        addBasProAjaxErr(pro_code, pro_name);
+      } else {
+        addBasProAjax(pro_code, pro_name);
+      }
 
-        })
+    })
 
-        //提交新增产品
-        function addBasProAjax(pro_code, pro_name) {
-            $.ajax({
-                url: '/sbweb/bas/inspro/',
-                type: 'PUT',
-                data: {"pro_code": pro_code, "pro_name": pro_name},
-                async: false,
-                dataType: "json",
-                error: function (res) {
-                    if (res.responseText == 'sessionLost') {
-                        //session失效时的处理
-                        window.location.href = "/sbweb/";
-                    }
-                    ;
-                },
-                success: function (res) {
-                    if (res.reCode == 0) {
-                        art.dialog.alert("新增产品成功！", function () {
-                            origin.reload();
-                        });
-                    } else {
-                        art.dialog.alert(res.reInfo, 'face-sad');
-                    }
-                }
+    //提交新增产品
+    function addBasProAjax(pro_code, pro_name) {
+      $.ajax({
+        url: '/sbweb/bas/inspro/',
+        type: 'PUT',
+        data: {"pro_code": pro_code, "pro_name": pro_name},
+        async: false,
+        dataType: "json",
+        error: function (res) {
+          if (res.responseText == 'sessionLost') {
+            //session失效时的处理
+            window.location.href = "/sbweb/";
+          }
+          ;
+        },
+        success: function (res) {
+          if (res.reCode == 0) {
+            art.dialog.alert("新增产品成功！", function () {
+              origin.reload();
             });
+          } else {
+            art.dialog.alert(res.reInfo, 'face-sad');
+          }
         }
+      });
+    }
 
-        //提交新增产品-事物
-        function addBasProAjaxErr(pro_code, pro_name) {
-            $.ajax({
-                url: '/sbweb/bas/insproerr/',
-                type: 'PUT',
-                data: {"pro_code": pro_code, "pro_name": pro_name},
-                async: false,
-                dataType: "json",
-                error: function (res) {
-                    if (res.responseText == 'sessionLost') {
-                        //session失效时的处理
-                        window.location.href = "/sbweb/";
-                    }
-                    ;
-                },
-                success: function (res) {
-                    if (res.reCode == 0) {
-                        art.dialog.alert("新增产品成功！", function () {
-                            origin.reload();
-                        });
-                    } else {
-                        art.dialog.alert(res.reInfo, 'face-sad');
-                    }
-                }
+    //提交新增产品-事物
+    function addBasProAjaxErr(pro_code, pro_name) {
+      $.ajax({
+        url: '/sbweb/bas/insproerr/',
+        type: 'PUT',
+        data: {"pro_code": pro_code, "pro_name": pro_name},
+        async: false,
+        dataType: "json",
+        error: function (res) {
+          if (res.responseText == 'sessionLost') {
+            //session失效时的处理
+            window.location.href = "/sbweb/";
+          }
+          ;
+        },
+        success: function (res) {
+          if (res.reCode == 0) {
+            art.dialog.alert("新增产品成功！", function () {
+              origin.reload();
             });
+          } else {
+            art.dialog.alert(res.reInfo, 'face-sad');
+          }
         }
+      });
+    }
 
-        //取消
-        $("#btn_cancel").click(function () {
-            art.dialog.close();
-        });
+    //取消
+    $("#btn_cancel").click(function () {
+      art.dialog.close();
     });
+  });
 </script>
 </body>
 </html>

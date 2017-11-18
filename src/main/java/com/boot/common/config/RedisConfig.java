@@ -51,8 +51,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         return cacheManager;
     }
 
-    @Bean(name="redisTemplate")
-    public RedisTemplate redisTemplate(@Qualifier("master")RedisConnectionFactory factory) {
+    @Bean(name = "redisTemplate")
+    public RedisTemplate redisTemplate(@Qualifier("master") RedisConnectionFactory factory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
         template.setKeySerializer(new StringRedisSerializer());
@@ -61,7 +61,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         return template;
     }
 
-    private JedisPoolConfig poolConfig(){
+    private JedisPoolConfig poolConfig() {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(redisProperties.getMaxIdle());
         jedisPoolConfig.setMinIdle(redisProperties.getMinIdle());
@@ -70,7 +70,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         return jedisPoolConfig;
     }
 
-    @Bean(name="master")
+    @Bean(name = "master")
     public RedisConnectionFactory redisConnectionFactory() {
         JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
         redisConnectionFactory.setPoolConfig(poolConfig());

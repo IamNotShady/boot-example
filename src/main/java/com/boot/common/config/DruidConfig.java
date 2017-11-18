@@ -17,8 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * Created by zhouxiaoxiao on 17/4/19.
- * druid数据源配置和监控配置
+ * Created by zhouxiaoxiao on 17/4/19. druid数据源配置和监控配置
  */
 @Configuration
 @EnableConfigurationProperties(DruidProperties.class)
@@ -47,7 +46,8 @@ public class DruidConfig {
         dataSource.setTestOnBorrow(properties.isTestOnBorrow());
         dataSource.setTestOnReturn(properties.isTestOnReturn());
         dataSource.setPoolPreparedStatements(properties.isPoolPreparedStatements());
-        dataSource.setMaxPoolPreparedStatementPerConnectionSize(properties.getMaxPoolPreparedStatementPerConnectionSize());
+        dataSource.setMaxPoolPreparedStatementPerConnectionSize(
+                properties.getMaxPoolPreparedStatementPerConnectionSize());
         dataSource.setValidationQuery(properties.getValidationQuery());
         try {
             dataSource.setFilters(properties.getFilters());
@@ -60,13 +60,12 @@ public class DruidConfig {
 
     /**
      * 注册一个StatViewServlet
-     *
-     * @return
      */
     @Bean
     public ServletRegistrationBean DruidStatViewServlet() {
         //org.springframework.boot.context.embedded.ServletRegistrationBean提供类的进行注册.
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(
+                new StatViewServlet(), "/druid/*");
         //添加初始化参数：initParams
         //IP白名单 (没有配置或者为空，则允许所有访问)
         //servletRegistrationBean.addInitParameter("allow","127.0.0.1");
@@ -82,16 +81,16 @@ public class DruidConfig {
 
     /**
      * 注册一个：filterRegistrationBean
-     *
-     * @return
      */
     @Bean
     public FilterRegistrationBean druidStatFilter() {
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(
+                new WebStatFilter());
         //添加过滤规则.
         filterRegistrationBean.addUrlPatterns("/*");
         //添加不需要忽略的格式信息.
-        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+        filterRegistrationBean
+                .addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
 }
