@@ -18,8 +18,6 @@ public class LoginRealm extends AuthorizationBaseRealm {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final String DEFAULT_PWD_KEY = "password";
-    private static final String DEFAULT_IDENTITY_KEY = "username";
     private static final String DEFAULT_SALT_KEY = "salt";
 
     /**
