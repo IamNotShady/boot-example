@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * 全局异常处理 处理控制器抛出的异常
- * Created by zhouxiaoxiao on 17/4/19.
+ * 全局异常处理 处理控制器抛出的异常 Created by zhouxiaoxiao on 17/4/19.
  */
 @ControllerAdvice
 public class ExceptionController {

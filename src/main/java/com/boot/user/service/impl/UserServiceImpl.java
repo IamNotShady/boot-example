@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    @LoggerAnnotation(description="PubUserServiceImpl.getUserByName")
+    @LoggerAnnotation(description = "PubUserServiceImpl.getUserByName")
     public UserBean getUserByName(UserBean userBean)
             throws BaseException {
         Example userExample = new Example(UserBean.class);
@@ -39,20 +39,21 @@ public class UserServiceImpl implements UserService {
         }
 
         UserBean user = users.get(0);
-        AuthenticationToken token = new UsernamePasswordToken(userBean.getUsername(), userBean.getPassword(),true);
+        AuthenticationToken token = new UsernamePasswordToken(userBean.getUsername(),
+                userBean.getPassword(), true);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {
             ShiroUtils.getSubject().login(token);
             ShiroUtils.setAttribute(ShiroUtils.USER_ID, user.getId());
             return user;
-        }catch (UnknownAccountException e){
+        } catch (UnknownAccountException e) {
             throw new BaseException("用户在系统中不存在");
-        }catch (IncorrectCredentialsException ice) {
+        } catch (IncorrectCredentialsException ice) {
             throw new BaseException("密码不正确");
         } catch (LockedAccountException lae) {
             throw new BaseException("账户已锁定");
-        }  catch (AuthenticationException e) {
+        } catch (AuthenticationException e) {
             //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景
             e.printStackTrace();
             throw new BaseException("用户名或密码不正确");

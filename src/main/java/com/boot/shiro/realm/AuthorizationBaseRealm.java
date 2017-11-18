@@ -21,7 +21,7 @@ import org.springframework.util.CollectionUtils;
  * @Description
  * @Date Created on 2017/11/10
  */
-public  abstract class AuthorizationBaseRealm extends AuthorizingRealm {
+public abstract class AuthorizationBaseRealm extends AuthorizingRealm {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -30,9 +30,6 @@ public  abstract class AuthorizationBaseRealm extends AuthorizingRealm {
 
     /**
      * 获取授权信息
-     *
-     * @param principals
-     * @return
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -42,7 +39,8 @@ public  abstract class AuthorizationBaseRealm extends AuthorizingRealm {
             if (userid != null) {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 // roles | perms
-                Map<String, Collection<String>> rolesAndPerms = shiroService.getUserRolesAndPerms(userid);
+                Map<String, Collection<String>> rolesAndPerms = shiroService
+                        .getUserRolesAndPerms(userid);
                 Collection<String> roles = rolesAndPerms.get(Constants.DEFAULT_ROLES_KEY);
                 Collection<String> perms = rolesAndPerms.get(Constants.DEFAULT_PERMS_KEY);
                 if (!CollectionUtils.isEmpty(roles)) {

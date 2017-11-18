@@ -69,7 +69,7 @@ public class ShiroConfig {
     }
 
     @Bean
-    public LoginRealm getLoginRealm(){
+    public LoginRealm getLoginRealm() {
         LoginRealm loginRealm = new LoginRealm();
         loginRealm.setName("loginRealm");
         loginRealm.setCredentialsMatcher(getCredentialsMatcher());
@@ -79,6 +79,7 @@ public class ShiroConfig {
         loginRealm.setAuthorizationCacheName("authorizationCache");
         return loginRealm;
     }
+
     @Bean
     public RedisCacheSessionDao getRedisCacheSessionDao() {
         return new RedisCacheSessionDao();
@@ -96,13 +97,13 @@ public class ShiroConfig {
     @Bean
     public ModularRealmAuthenticator getModularRealmAuthenticator() {
         ModularRealmAuthenticator modularRealmAuthenticator = new ModularRealmAuthenticator();
-        modularRealmAuthenticator.setAuthenticationStrategy(new CustomAtLeastOneSuccessfulStrategy());
+        modularRealmAuthenticator
+                .setAuthenticationStrategy(new CustomAtLeastOneSuccessfulStrategy());
         return modularRealmAuthenticator;
     }
 
     /**
      * 定时清理过期session
-     * @return
      */
     @Bean
     public ExecutorServiceSessionValidationScheduler getExecutorServiceSessionValidationScheduler() {
@@ -120,7 +121,8 @@ public class ShiroConfig {
         sessionManager.setGlobalSessionTimeout(Constants.GLOBAL_SESSION_TIMEOUT);
         sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.setDeleteInvalidSessions(true);
-        sessionManager.setSessionValidationScheduler(getExecutorServiceSessionValidationScheduler());
+        sessionManager
+                .setSessionValidationScheduler(getExecutorServiceSessionValidationScheduler());
         return sessionManager;
     }
 
@@ -133,10 +135,8 @@ public class ShiroConfig {
     }
 
     /**
-     * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),
-     * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证 *
+     * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions), 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证 *
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
-     *
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
@@ -145,15 +145,17 @@ public class ShiroConfig {
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
     }
+
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
 
     @Bean
-    public Sha256CredentialsMatcher getCredentialsMatcher(){
+    public Sha256CredentialsMatcher getCredentialsMatcher() {
         Sha256CredentialsMatcher sha256CredentialsMatcher = new Sha256CredentialsMatcher();
         sha256CredentialsMatcher.setHashAlgorithmName("SHA-1");
         return sha256CredentialsMatcher;
@@ -161,20 +163,19 @@ public class ShiroConfig {
 
     /**
      * cookie对象;
-     * @return
      */
-    public SimpleCookie rememberMeCookie(){
+    public SimpleCookie rememberMeCookie() {
         //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //<!-- 记住我cookie生效时间30天 ,单位秒;-->
         simpleCookie.setMaxAge(2592000);
         return simpleCookie;
     }
+
     /**
      * cookie管理对象;记住我功能
-     * @return
      */
-    public CookieRememberMeManager rememberMeManager(){
+    public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
         //rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)

@@ -1,43 +1,48 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>bas</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../../static/css/style.css" />
-  <link rel="stylesheet" type="text/css" th:href="@{/js/artDialog/skins/blue.css}" href="../../static/js/artDialog/skins/blue.css"/>
-<style type="text/css">
-.tablelist {
-	width:820px;
-}
-.tablelist td {
-	line-height: 20px;
-	padding: 10px 5px 10px 5px;
-	border-right: dotted 1px #c7c7c7;
-	word-wrap: break-word;
-	word-break: break-all;
-}
-</style>
-<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}" src="../../static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" th:src="@{/js/jquery.idTabs.min.js}" src="../../static/js/jquery.idTabs.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $(".click").click(function(){
-  $(".tip").fadeIn(200);
-  });
-  
-  $(".tiptop a").click(function(){
-  $(".tip").fadeOut(200);
-  });
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>bas</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"
+        href="../../static/css/style.css"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/js/artDialog/skins/blue.css}"
+        href="../../static/js/artDialog/skins/blue.css"/>
+  <style type="text/css">
+    .tablelist {
+      width: 820px;
+    }
 
-  $(".sure").click(function(){
-  $(".tip").fadeOut(100);
-  });
+    .tablelist td {
+      line-height: 20px;
+      padding: 10px 5px 10px 5px;
+      border-right: dotted 1px #c7c7c7;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  </style>
+  <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"
+          src="../../static/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/jquery.idTabs.min.js}"
+          src="../../static/js/jquery.idTabs.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".click").click(function () {
+        $(".tip").fadeIn(200);
+      });
 
-  $(".cancel").click(function(){
-  $(".tip").fadeOut(100);
-  });
-});
-</script>
+      $(".tiptop a").click(function () {
+        $(".tip").fadeOut(200);
+      });
+
+      $(".sure").click(function () {
+        $(".tip").fadeOut(100);
+      });
+
+      $(".cancel").click(function () {
+        $(".tip").fadeOut(100);
+      });
+    });
+  </script>
 </head>
 <body>
 <div class="place"><span>位置：</span>
@@ -47,16 +52,19 @@ $(document).ready(function(){
   </ul>
 </div>
 <div class="rightinfo">
-  <form th:method="post" name="queryForm" id="queryForm" th:action="@{/bas/pro}" th:object="${proBean}">
+  <form th:method="post" name="queryForm" id="queryForm" th:action="@{/bas/pro}"
+        th:object="${proBean}">
     <div id="tab2" class="tabson" style="min-width: 800px;">
       <ul class="seachform">
         <li>
           <label>产品编号</label>
-          <input name="pro_code" id="pro_code" type="text" class="scinput" value="xxx" th:value="*{pro_code}"/>
+          <input name="pro_code" id="pro_code" type="text" class="scinput" value="xxx"
+                 th:value="*{pro_code}"/>
         </li>
         <li>
           <label>产品名</label>
-          <input name="pro_name" id="pro_name" type="text"  class="scinput" value="xxx" th:value="*{pro_name}"/>
+          <input name="pro_name" id="pro_name" type="text" class="scinput" value="xxx"
+                 th:value="*{pro_name}"/>
         </li>
         <li>
           <label>&nbsp;</label>
@@ -64,88 +72,91 @@ $(document).ready(function(){
         </li>
       </ul>
     </div>
-    <input type="hidden" id="currentPage" name="currentPage" value="" />
+    <input type="hidden" id="currentPage" name="currentPage" value=""/>
   </form>
   <table class="tablelist">
     <thead>
-      <tr>
-        <th style="width:180px;">产品编号</th>
-        <th style="width:220px">产品名</th>
-        <th style="width:220px">创建时间</th>
-        <th style="width:120px;text-indent:18px;">操作</th>
-      </tr>
+    <tr>
+      <th style="width:180px;">产品编号</th>
+      <th style="width:220px">产品名</th>
+      <th style="width:220px">创建时间</th>
+      <th style="width:120px;text-indent:18px;">操作</th>
+    </tr>
     </thead>
     <tbody>
-      <tr th:each="pro:${proBean.proList}">
-        <td style="width:180px;" th:text="${pro.pro_code}">xxxxx</td>
-        <td style="width:220px" th:text="${pro.pro_name}">xxxxx</td>
-        <td style="width:220px" th:text="${pro.create_dt}">time</td>
-        <td style="width:120px;text-indent:15px;">
+    <tr th:each="pro:${proBean.proList}">
+      <td style="width:180px;" th:text="${pro.pro_code}">xxxxx</td>
+      <td style="width:220px" th:text="${pro.pro_name}">xxxxx</td>
+      <td style="width:220px" th:text="${pro.create_dt}">time</td>
+      <td style="width:120px;text-indent:15px;">
         <a ty="bas_pro_del" th:rel="${pro.id}" class="tablelink bas_pro_del">删除</a>
-        </td>
-      </tr>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
 <!-- 尾部操作项 -->
 <div class="fixed_bottom" id="fixed_bottom">
-  <input id="bas_pro_add" name="bas_pro_add" ty="bas_pro_add" type="button" class="scbtn" value="添加产品"/>
+  <input id="bas_pro_add" name="bas_pro_add" ty="bas_pro_add" type="button" class="scbtn"
+         value="添加产品"/>
 </div>
-<script type="text/javascript" th:src="@{/js/artDialog/jquery.artDialog.js}" src="../../static/js/artDialog/jquery.artDialog.js"></script>
-<script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}" src="../../static/js/artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" th:src="@{/js/artDialog/jquery.artDialog.js}"
+        src="../../static/js/artDialog/jquery.artDialog.js"></script>
+<script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}"
+        src="../../static/js/artDialog/plugins/iframeTools.js"></script>
 <script type="text/javascript">
-    $('.tablelist tbody tr:odd').addClass('odd');
+  $('.tablelist tbody tr:odd').addClass('odd');
 
-	// 新增产品
-	$('#bas_pro_add').click(function(e) {
-		var url = 'goinspro';
-		var dialog = art.dialog.open(url, {
-			id : 'add',
-			lock : true,
-			title : '新增产品',
-			width : '660px',
-			height : '180px'
-		})
-	});
-    
-	//删除产品
-	$(".bas_pro_del").click(function(){
-		var id = $(this).attr("rel");
-        art.dialog.confirm('确定删除这条产品信息吗？', function() {
-            $.ajax({
-                url:'/sbweb/bas/delpro/' + id,
-                type:'DELETE',
-                async: false,
-                dataType:"json",
-                error: function (res) {
-                    if (res.responseText == 'sessionLost') {
-                        //session失效时的处理
-                        window.location.href = "/sbweb/";
-                    }
-                    ;
-                },
-                success:function(res){
-					if(res.reCode == 0){
-                        art.dialog({
-                                    icon: 'succeed',
-                                    content: '删除产品成功',
-                                    lock: false,
-                                    ok: function () {
-                                        reload();
-                                    }
-                     })
-				}else{
-					art.dialog.alert(res.reInfo,'face-sad');
-				}
-			}
-		 });
-        }, function() {
-        })
-	});
-    
-function reload(){
+  // 新增产品
+  $('#bas_pro_add').click(function (e) {
+    var url = 'goinspro';
+    var dialog = art.dialog.open(url, {
+      id: 'add',
+      lock: true,
+      title: '新增产品',
+      width: '660px',
+      height: '180px'
+    })
+  });
+
+  //删除产品
+  $(".bas_pro_del").click(function () {
+    var id = $(this).attr("rel");
+    art.dialog.confirm('确定删除这条产品信息吗？', function () {
+      $.ajax({
+        url: '/sbweb/bas/delpro/' + id,
+        type: 'DELETE',
+        async: false,
+        dataType: "json",
+        error: function (res) {
+          if (res.responseText == 'sessionLost') {
+            //session失效时的处理
+            window.location.href = "/sbweb/";
+          }
+          ;
+        },
+        success: function (res) {
+          if (res.reCode == 0) {
+            art.dialog({
+              icon: 'succeed',
+              content: '删除产品成功',
+              lock: false,
+              ok: function () {
+                reload();
+              }
+            })
+          } else {
+            art.dialog.alert(res.reInfo, 'face-sad');
+          }
+        }
+      });
+    }, function () {
+    })
+  });
+
+  function reload() {
     $('#queryForm').submit();
-}
+  }
 
 </script>
 </body>

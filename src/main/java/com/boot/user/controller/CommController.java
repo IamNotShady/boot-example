@@ -13,26 +13,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CommController extends BaseController {
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    @LoggerAnnotation(description="PubCommController.index")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @LoggerAnnotation(description = "PubCommController.index")
     public String index(Model model) {
         model.addAttribute("user", new UserBean());
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "*",method = RequestMethod.GET)
+    @RequestMapping(value = "*", method = RequestMethod.GET)
     public String page404() {
         return "/404";
     }
 
-    @RequestMapping(value = "/left",method = RequestMethod.GET)
+    @RequestMapping(value = "/left", method = RequestMethod.GET)
     public String left() {
         return "/left";
     }
 
-    @RequestMapping(value ="/welcome",method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome() {
         return "/welcome";
     }

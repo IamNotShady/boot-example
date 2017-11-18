@@ -29,21 +29,25 @@ public final class ShortUuid {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this)
+        if (o == this) {
             return true;
+        }
 
-        if (!(o instanceof ShortUuid))
+        if (!(o instanceof ShortUuid)) {
             return false;
+        }
 
         return ((ShortUuid) o).toString().equals(uuid);
     }
 
     public static class Builder {
+
         private char[] alphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
                 .toCharArray();
         private int alphabetSize = alphabet.length;
 
-        public Builder() {}
+        public Builder() {
+        }
 
         public Builder alphabet(String alphabet) {
             this.alphabet = alphabet.toCharArray();
@@ -87,8 +91,9 @@ public final class ShortUuid {
 
             if (padToLen > 0) {
                 int padding = Math.max(padToLen - shortUuid.length(), 0);
-                for (int i = 0; i < padding; i++)
+                for (int i = 0; i < padding; i++) {
                     shortUuid.append(alphabet[0]);
+                }
             }
 
             return shortUuid.toString();

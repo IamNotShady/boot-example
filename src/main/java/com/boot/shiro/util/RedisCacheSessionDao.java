@@ -27,7 +27,7 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
 
     private long globalSessionTimeOut = Constants.GLOBAL_SESSION_TIMEOUT;
 
-    @Resource(name="redisTemplate")
+    @Resource(name = "redisTemplate")
     private RedisTemplate<Serializable, Session> redisTemplate;
 
     public RedisCacheSessionDao() {
@@ -71,9 +71,6 @@ public class RedisCacheSessionDao extends CachingSessionDAO {
 
     /**
      * 自定义sessionID
-     *
-     * @param session
-     * @return
      */
     @Override
     protected Serializable generateSessionId(Session session) {

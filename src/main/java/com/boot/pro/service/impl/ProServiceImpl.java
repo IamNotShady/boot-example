@@ -24,7 +24,7 @@ public class ProServiceImpl implements ProService {
     @Autowired
     private ProMapper basProMapper;
 
-    @LoggerAnnotation(description="BasProServiceImpl.queryBasPro")
+    @LoggerAnnotation(description = "BasProServiceImpl.queryBasPro")
     public void queryBasPro(ProBean bean) throws Exception {
         if (bean.getPage() != null && bean.getRows() != null) {
             PageHelper.startPage(bean.getPage(), bean.getRows());
@@ -42,7 +42,7 @@ public class ProServiceImpl implements ProService {
         basProMapper.insert(bean);
     }
 
-    @CacheEvict(value = "basPro",allEntries=true)
+    @CacheEvict(value = "basPro", allEntries = true)
     public void delBasPro(ProBean bean) throws Exception {
         basProMapper.delete(bean);
     }

@@ -14,15 +14,13 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Created by zhouxiaoxiao on 17/3/1.
- * 过滤器和拦截器的执行顺序都与代码顺序正相关
+ * Created by zhouxiaoxiao on 17/3/1. 过滤器和拦截器的执行顺序都与代码顺序正相关
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     /**
      * 编码过滤器
-     * @return
      */
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -36,8 +34,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     /**
      * 配置fastjson将bean转为json
-     *
-     * @param converters
      */
     @Override
     public void configureMessageConverters(

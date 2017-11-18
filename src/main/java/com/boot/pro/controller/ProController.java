@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("bas")
 public class ProController extends BaseController {
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private ProService basProService;
@@ -29,18 +30,16 @@ public class ProController extends BaseController {
 
     /**
      * 查询产品列表
-     *
-     * @return
      */
     @RequestMapping("/pro")
-    @LoggerAnnotation(description="BasProController.querypro")
+    @LoggerAnnotation(description = "BasProController.querypro")
     public String querypro(ModelMap modelMap, ProBean bean) {
         try {
-            redisUtils.set("bean",bean);
+            redisUtils.set("bean", bean);
             basProService.queryBasPro(bean);
             modelMap.addAttribute("proBean", bean);
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             modelMap.addAttribute("info", Constants.SYS_FAIL_MSG);
             return EXCEPTION_PAGE;
         }
@@ -49,22 +48,18 @@ public class ProController extends BaseController {
 
     /**
      * 进入新增产品页面
-     *
-     * @return
      */
     @RequestMapping(value = "/goinspro", method = RequestMethod.GET)
-    @LoggerAnnotation(description="BasProController.goinspro")
+    @LoggerAnnotation(description = "BasProController.goinspro")
     public String goinspro(ModelMap modelMap) {
         return "/bas/bas_pro_add";
     }
 
     /**
      * 新增产品
-     *
-     * @return
      */
     @RequestMapping(value = "/inspro", method = RequestMethod.PUT)
-    @LoggerAnnotation(description="BasProController.inspro")
+    @LoggerAnnotation(description = "BasProController.inspro")
     @ResponseBody
     public AjaxBean inspro(ProBean bean) throws Exception {
         basProService.insBasPro(bean);
@@ -74,11 +69,9 @@ public class ProController extends BaseController {
 
     /**
      * 新增产品-用异常来测试事物
-     *
-     * @return
      */
     @RequestMapping(value = "/insproerr", method = RequestMethod.PUT)
-    @LoggerAnnotation(description="BasProController.insproerr")
+    @LoggerAnnotation(description = "BasProController.insproerr")
     @ResponseBody
     public AjaxBean insproerr(ProBean bean) throws Exception {
         basProService.insBasProErr(bean);
@@ -88,11 +81,9 @@ public class ProController extends BaseController {
 
     /**
      * 删除产品
-     *
-     * @return
      */
     @RequestMapping(value = "/delpro/{id}", method = RequestMethod.DELETE)
-    @LoggerAnnotation(description="BasProController.delBasPro")
+    @LoggerAnnotation(description = "BasProController.delBasPro")
     @ResponseBody
     public AjaxBean delBasPro(@PathVariable String id) throws Exception {
         ProBean bean = new ProBean();

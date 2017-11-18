@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>xxx</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css" />
-<link rel="stylesheet" type="text/css" th:href="@{/js/artDialog/skins/blue.css}" href="../static/js/artDialog/skins/blue.css"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>xxx</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"
+        href="../static/css/style.css"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/js/artDialog/skins/blue.css}"
+        href="../static/js/artDialog/skins/blue.css"/>
 </head>
-<body style="background-color:#1c77ac; background-image:th:url(@{images/light.png}); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+<body
+    style="background-color:#1c77ac; background-image:th:url(@{images/light.png}); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
 <div id="mainBody">
   <div id="cloud1" class="cloud"></div>
   <div id="cloud2" class="cloud"></div>
@@ -16,15 +19,17 @@
     <!--li><a href="javascript:void(0);">收藏</a></li-->
   </ul>
 </div>
-<form method="post" action="login" id="loginForm" name="loginForm" >
+<form method="post" action="login" id="loginForm" name="loginForm">
   <div class="loginbody"><span class="systemlogo"></span>
     <div class="loginbox">
       <ul>
         <li>
-          <input name="username" id="username" type="text" class="loginuser" th:value="${user.username}"/>
+          <input name="username" id="username" type="text" class="loginuser"
+                 th:value="${user.username}"/>
         </li>
         <li>
-          <input name="password" id="password" type="password" class="loginpwd" th:value="${user.password}"/>
+          <input name="password" id="password" type="password" class="loginpwd"
+                 th:value="${user.password}"/>
         </li>
         <li>
           <input name="b_submit" id="b_submit" type="button" class="loginbtn" value="登录"/>
@@ -35,65 +40,70 @@
   </div>
 </form>
 <input name="error_info" id="error_info" type="hidden" class="loginbtn" th:value="${info}"/>
-<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}" src="../static/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" th:src="@{/js/artDialog/jquery.artDialog.js}" src="../static/js/artDialog/jquery.artDialog.js"></script>
-<script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}" src="../static/js/artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"
+        src="../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" th:src="@{/js/artDialog/jquery.artDialog.js}"
+        src="../static/js/artDialog/jquery.artDialog.js"></script>
+<script type="text/javascript" th:src="@{/js/artDialog/plugins/iframeTools.js}"
+        src="../static/js/artDialog/plugins/iframeTools.js"></script>
 <script type="text/javascript" th:src="@{/js/cloud.js}" src="../static/js/cloud.js"></script>
 <script type="text/javascript">
-	$(function(){
-    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-	$(window).resize(function(){  
-    $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-    })  
-});  
+  $(function () {
+    $('.loginbox').css({'position': 'absolute', 'left': ($(window).width() - 692) / 2});
+    $(window).resize(function () {
+      $('.loginbox').css({'position': 'absolute', 'left': ($(window).width() - 692) / 2});
+    })
+  });
 </script>
 <script type="text/javascript">
-$(document).ready(function(e){
-	//验证
-	var regForm = function(){	
-		var loginName = $.trim($('#username').val());
-		var pass_word = $.trim($('#password').val());
-		if(loginName==''){
-            artDialog.alert('用户名不能为空！');
-			return false;
-		}
-		if(pass_word==''){
-            artDialog.alert('密码不能为空！');
-			return false;
-		}
-		return true;
-	};
-	$('#b_submit').click(function() {
-    	//验证
-    	if(!regForm()){
-    		return false; 
-    	}	
-        $('#loginForm').submit();
+  $(document).ready(function (e) {
+    //验证
+    var regForm = function () {
+      var loginName = $.trim($('#username').val());
+      var pass_word = $.trim($('#password').val());
+      if (loginName == '') {
+        artDialog.alert('用户名不能为空！');
+        return false;
+      }
+      if (pass_word == '') {
+        artDialog.alert('密码不能为空！');
+        return false;
+      }
+      return true;
+    };
+    $('#b_submit').click(function () {
+      //验证
+      if (!regForm()) {
+        return false;
+      }
+      $('#loginForm').submit();
     });
-	
-	//忘记密码
-	$('.f-pwd').click(function() {
-    	art.dialog.alert('请联系管理员，联系电话：13000000000!');
-    });
-});
 
-	document.onkeydown = function(e){
-        if(!e) e = window.event;
-        if((e.keyCode || e.which) == 13){
-            $('#b_submit').click();
-        }
-	}
-	
-    var error_info = $.trim($('#error_info').val());
-    if(error_info!=''){
-		artDialog.alert(error_info);
-	}
-    
-	window.onload = function(){
-	   if(window.parent.document.getElementById('mainFrame')!=null){
-		   window.parent.location.href = window.location.href;
-		}	
-	}
+    //忘记密码
+    $('.f-pwd').click(function () {
+      art.dialog.alert('请联系管理员，联系电话：13000000000!');
+    });
+  });
+
+  document.onkeydown = function (e) {
+    if (!e) {
+      e = window.event;
+    }
+    if ((e.keyCode || e.which) == 13) {
+      $('#b_submit').click();
+    }
+  }
+
+  var error_info = $.trim($('#error_info').val());
+  if (error_info != '') {
+    artDialog.alert(error_info);
+  }
+
+  window.onload = function () {
+    if (window.parent.document.getElementById('mainFrame') != null) {
+      window.parent.location.href = window.location.href;
+    }
+  }
 </script>
 </body>
 </html>

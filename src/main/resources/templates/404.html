@@ -1,21 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>404</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="../static/css/style.css"/>
-<script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}" src="../static/js/jquery-1.8.3.min.js"></script>
-<script language="javascript">
-	$(function(){
-    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
-	$(window).resize(function(){  
-    $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
-    })  
-});  
-</script>
+  <title>404</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"
+        href="../static/css/style.css"/>
+  <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"
+          src="../static/js/jquery-1.8.3.min.js"></script>
+  <script language="javascript">
+    $(function () {
+      $('.error').css({'position': 'absolute', 'left': ($(window).width() - 490) / 2});
+      $(window).resize(function () {
+        $('.error').css({'position': 'absolute', 'left': ($(window).width() - 490) / 2});
+      })
+    });
+  </script>
 </head>
 <body style="background:#edf6fa;">
-<div class="place"> <span>位置：</span>
+<div class="place"><span>位置：</span>
   <ul class="placeul">
     <li><a href="javascript:void(0);">首页</a></li>
     <li><a href="javascript:void(0);">404错误提示</a></li>
