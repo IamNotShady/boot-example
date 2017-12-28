@@ -17,4 +17,5 @@ public class SbwebApplication {
         // 启动Spring Boot项目的唯一入口
         new SpringApplication(SbwebApplication.class).run(args);
     }
+
 }
