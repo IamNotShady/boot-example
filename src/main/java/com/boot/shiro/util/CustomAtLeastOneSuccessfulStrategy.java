@@ -11,6 +11,7 @@ import org.apache.shiro.util.CollectionUtils;
  */
 public class CustomAtLeastOneSuccessfulStrategy extends AtLeastOneSuccessfulStrategy {
 
+    @Override
     public AuthenticationInfo afterAllAttempts(AuthenticationToken token,
             AuthenticationInfo aggregate) throws AuthenticationException {
         //we know if one or more were able to succesfully authenticate if the aggregated account object does not
