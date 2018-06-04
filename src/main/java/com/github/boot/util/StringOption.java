@@ -7,7 +7,7 @@ public final class StringOption {
      */
     public static boolean isEmpty(String str) {
         if (null == str || "".equals(str) || str.length() == 0
-                || str.replaceAll(" ", "").length() == 0) {
+            || str.replaceAll(" ", "").length() == 0) {
             return true;
         }
         return false;
@@ -135,7 +135,7 @@ public final class StringOption {
      */
     public static String strToNumStr(String str) {
         if (str != null && str.trim().length() > 0
-                && ".".equals(str.substring(0, 1))) {
+            && ".".equals(str.substring(0, 1))) {
             return "0" + str;
         }
         return str;

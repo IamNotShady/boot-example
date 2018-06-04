@@ -2,44 +2,44 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>left</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"
-        href="../static/css/style.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>left</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"
+          href="../static/css/style.css"/>
 </head>
 <body style="background:#f0f9fd;">
 <div class="lefttop"><span></span>功能菜单</div>
 <dl class="leftmenu">
-  <dd class="power8" ty="bas">
-    <div class="title"><span><img th:src="@{/images/leftico03.png}"
-                                  src="../static/images/leftico03.png"/></span>基础管理
-    </div>
-    <ul class="menuson">
-      <li class="power8" ty="bas_pro"><cite></cite><a href="bas/pro"
-                                                      target="rightFrame">产品管理</a><i></i></li>
-      <!--<li class="" ty="bas_car"><cite></cite><a href="bas/car" target="rightFrame">车辆管理</a><i></i></li>-->
-    </ul>
-  </dd>
+    <dd class="power8" ty="bas">
+        <div class="title"><span><img th:src="@{/images/leftico03.png}"
+                                      src="../static/images/leftico03.png"/></span>基础管理
+        </div>
+        <ul class="menuson">
+            <li class="power8" ty="bas_pro"><cite></cite><a href="bas/pro"
+                                                            target="rightFrame">产品管理</a><i></i></li>
+            <!--<li class="" ty="bas_car"><cite></cite><a href="bas/car" target="rightFrame">车辆管理</a><i></i></li>-->
+        </ul>
+    </dd>
 </dl>
 <script language="JavaScript" th:src="@{/js/jquery-1.8.3.min.js}"
         src="../static/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-  $(function () {
-    //导航切换
-    $(".menuson li").click(function () {
-      $(".menuson li.active").removeClass("active");
-      $(this).addClass("active");
-    });
-    $('.title').click(function () {
-      var $ul = $(this).next('ul');
-      $('dd').find('ul').slideUp();
-      if ($ul.is(':visible')) {
-        $(this).next('ul').slideUp();
-      } else {
-        $(this).next('ul').slideDown();
-      }
-    });
-  })
+    $(function () {
+        //导航切换
+        $(".menuson li").click(function () {
+            $(".menuson li.active").removeClass("active");
+            $(this).addClass("active");
+        });
+        $('.title').click(function () {
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if ($ul.is(':visible')) {
+                $(this).next('ul').slideUp();
+            } else {
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
 </script>
 </body>
 </html>

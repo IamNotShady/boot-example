@@ -1,14 +1,11 @@
 package com.github.boot.pro.controller;
 
+import com.github.boot.common.aop.LoggerAnnotation;
+import com.github.boot.common.base.BaseController;
 import com.github.boot.pro.bean.ProBean;
 import com.github.boot.pro.service.ProService;
-import com.github.boot.common.base.BaseController;
-import com.github.boot.common.aop.LoggerAnnotation;
 import com.github.boot.user.bean.AjaxBean;
-import com.github.boot.util.RedisUtils;
 import com.github.boot.util.Constants;
-import com.github.boot.pro.service.ProService;
-import com.github.boot.user.bean.AjaxBean;
 import com.github.boot.util.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

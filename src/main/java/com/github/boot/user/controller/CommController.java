@@ -1,9 +1,8 @@
 package com.github.boot.user.controller;
 
-import com.github.boot.common.base.BaseController;
 import com.github.boot.common.aop.LoggerAnnotation;
+import com.github.boot.common.base.BaseController;
 import com.github.boot.user.bean.UserBean;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

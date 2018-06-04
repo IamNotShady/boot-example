@@ -1,12 +1,14 @@
 package com.github.boot.pro.bean;
 
 
+import com.github.boot.common.base.BaseBean;
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.*;
-
-import com.github.boot.common.base.BaseBean;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Table(name = "t_pro")

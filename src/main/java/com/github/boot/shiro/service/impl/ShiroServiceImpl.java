@@ -1,15 +1,11 @@
 package com.github.boot.shiro.service.impl;
 
-import com.github.boot.shiro.service.ShiroService;
-import com.github.boot.user.bean.UserBean;
-import com.github.boot.user.mapper.UserMapper;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-
 import com.alibaba.fastjson.JSON;
-import com.github.boot.shiro.bean.*;
+import com.github.boot.shiro.bean.PermissionBean;
+import com.github.boot.shiro.bean.RoleBean;
+import com.github.boot.shiro.bean.RolePermissionBean;
+import com.github.boot.shiro.bean.RolesPermsCacheBean;
+import com.github.boot.shiro.bean.UserRoleBean;
 import com.github.boot.shiro.mapper.PermissionMapper;
 import com.github.boot.shiro.mapper.RoleMapper;
 import com.github.boot.shiro.mapper.RolePermissionMapper;
@@ -18,7 +14,15 @@ import com.github.boot.shiro.service.ShiroService;
 import com.github.boot.user.bean.UserBean;
 import com.github.boot.user.mapper.UserMapper;
 import com.github.boot.util.Constants;
-
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,12 +70,12 @@ public class ShiroServiceImpl implements ShiroService {
         String cacheValues = redisTemplate.opsForValue().get(cacheKey);
         if (StringUtils.isNotBlank(cacheValues)) {
             RolesPermsCacheBean cacheObj = (RolesPermsCacheBean) JSON
-                    .parseObject(cacheValues, RolesPermsCacheBean.class);
+                .parseObject(cacheValues, RolesPermsCacheBean.class);
             ;
             maps.put(Constants.DEFAULT_ROLES_KEY, cacheObj.getRoles());
             maps.put(Constants.DEFAULT_PERMS_KEY, cacheObj.getPerms());
             logger.debug("get cache success. roles and perms: {} ==> {}", uniqueIdentity,
-                    cacheValues);
+                cacheValues);
             return maps;
         }
 
@@ -103,7 +107,7 @@ public class ShiroServiceImpl implements ShiroService {
             Example rolePermissionExample = new Example(RolePermissionBean.class);
             rolePermissionExample.createCriteria().andIn("roleid", roleids);
             List<RolePermissionBean> rolePermissions = rolePermissionMapper
-                    .selectByExample(rolePermissionExample);
+                .selectByExample(rolePermissionExample);
             if (!CollectionUtils.isEmpty(rolePermissions)) {
                 Set<Long> permids = new HashSet<>();
                 for (RolePermissionBean rolePermission : rolePermissions) {
@@ -113,7 +117,7 @@ public class ShiroServiceImpl implements ShiroService {
                 Example permissionExample = new Example(PermissionBean.class);
                 permissionExample.createCriteria().andIn("roleid", roleids);
                 List<PermissionBean> permissions = permissionMapper
-                        .selectByExample(permissionExample);
+                    .selectByExample(permissionExample);
                 if (!CollectionUtils.isEmpty(permissions)) {
                     List<String> permNames = new ArrayList<>();
                     for (PermissionBean permission : permissions) {

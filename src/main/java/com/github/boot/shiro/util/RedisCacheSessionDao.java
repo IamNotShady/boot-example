@@ -1,13 +1,10 @@
 package com.github.boot.shiro.util;
 
-import java.io.Serializable;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-
 import com.github.boot.util.Constants;
 import com.github.boot.util.ShortUuid;
-
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.Resource;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;

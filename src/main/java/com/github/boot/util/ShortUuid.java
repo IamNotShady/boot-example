@@ -43,7 +43,7 @@ public final class ShortUuid {
     public static class Builder {
 
         private char[] alphabet = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-                .toCharArray();
+            .toCharArray();
         private int alphabetSize = alphabet.length;
 
         public Builder() {
@@ -106,7 +106,7 @@ public final class ShortUuid {
 
             for (int i = 0; i < charLen; i++) {
                 sum = sum.add(alphaSize.pow(i).multiply(BigInteger.valueOf(
-                        Arrays.binarySearch(alphabet, encoded[i]))));
+                    Arrays.binarySearch(alphabet, encoded[i]))));
             }
 
             String str = sum.toString(16);
@@ -117,15 +117,15 @@ public final class ShortUuid {
             }
 
             StringBuilder sb = new StringBuilder()
-                    .append(str.substring(0, 8))
-                    .append("-")
-                    .append(str.substring(8, 12))
-                    .append("-")
-                    .append(str.substring(12, 16))
-                    .append("-")
-                    .append(str.substring(16, 20))
-                    .append("-")
-                    .append(str.substring(20, 32));
+                .append(str.substring(0, 8))
+                .append("-")
+                .append(str.substring(8, 12))
+                .append("-")
+                .append(str.substring(12, 16))
+                .append("-")
+                .append(str.substring(16, 20))
+                .append("-")
+                .append(str.substring(20, 32));
 
             return sb.toString();
         }

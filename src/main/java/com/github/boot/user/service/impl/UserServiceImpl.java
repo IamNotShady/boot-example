@@ -1,16 +1,19 @@
 package com.github.boot.user.service.impl;
 
-import java.util.List;
-
 import com.github.boot.common.aop.LoggerAnnotation;
 import com.github.boot.common.base.BaseException;
 import com.github.boot.user.bean.UserBean;
 import com.github.boot.user.mapper.UserMapper;
 import com.github.boot.user.service.UserService;
 import com.github.boot.util.ShiroUtils;
-
+import java.util.List;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +33,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @LoggerAnnotation(description = "PubUserServiceImpl.getUserByName")
     public UserBean getUserByName(UserBean userBean)
-            throws BaseException {
+        throws BaseException {
         Example userExample = new Example(UserBean.class);
         userExample.createCriteria().andEqualTo("username", userBean.getUsername());
         List<UserBean> users = userMapper.selectByExample(userExample);
@@ -40,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         UserBean user = users.get(0);
         AuthenticationToken token = new UsernamePasswordToken(userBean.getUsername(),
-                userBean.getPassword(), true);
+            userBean.getPassword(), true);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {

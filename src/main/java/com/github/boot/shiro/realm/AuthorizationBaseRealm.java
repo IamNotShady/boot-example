@@ -1,13 +1,10 @@
 package com.github.boot.shiro.realm;
 
 import com.github.boot.shiro.service.ShiroService;
-import java.util.Collection;
-import java.util.Map;
-
-import com.github.boot.shiro.service.ShiroService;
 import com.github.boot.util.Constants;
 import com.github.boot.util.ShiroUtils;
-
+import java.util.Collection;
+import java.util.Map;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -41,7 +38,7 @@ public abstract class AuthorizationBaseRealm extends AuthorizingRealm {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 // roles | perms
                 Map<String, Collection<String>> rolesAndPerms = shiroService
-                        .getUserRolesAndPerms(userid);
+                    .getUserRolesAndPerms(userid);
                 Collection<String> roles = rolesAndPerms.get(Constants.DEFAULT_ROLES_KEY);
                 Collection<String> perms = rolesAndPerms.get(Constants.DEFAULT_PERMS_KEY);
                 if (!CollectionUtils.isEmpty(roles)) {

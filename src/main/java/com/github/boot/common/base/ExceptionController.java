@@ -1,11 +1,8 @@
 package com.github.boot.common.base;
 
 import com.github.boot.user.bean.AjaxBean;
-import java.sql.SQLException;
-
-import com.github.boot.user.bean.AjaxBean;
 import com.github.boot.util.Constants;
-
+import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,10 @@
 package com.github.boot.shiro.util;
 
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
 import org.apache.shiro.util.CollectionUtils;
 
@@ -13,7 +17,7 @@ public class CustomAtLeastOneSuccessfulStrategy extends AtLeastOneSuccessfulStra
 
     @Override
     public AuthenticationInfo afterAllAttempts(AuthenticationToken token,
-            AuthenticationInfo aggregate) throws AuthenticationException {
+        AuthenticationInfo aggregate) throws AuthenticationException {
         //we know if one or more were able to succesfully authenticate if the aggregated account object does not
         //contain null or empty data:
         if (aggregate == null || CollectionUtils.isEmpty(aggregate.getPrincipals())) {
@@ -21,10 +25,10 @@ public class CustomAtLeastOneSuccessfulStrategy extends AtLeastOneSuccessfulStra
                 throw new IncorrectCredentialsException();
             } else {
                 throw new AuthenticationException(
-                        "Authentication token of type [" + token.getClass() + "] " +
-                                "could not be authenticated by any configured realms.  Please ensure that at least one realm can "
-                                +
-                                "authenticate these tokens.");
+                    "Authentication token of type [" + token.getClass() + "] " +
+                        "could not be authenticated by any configured realms.  Please ensure that at least one realm can "
+                        +
+                        "authenticate these tokens.");
             }
         }
         return aggregate;

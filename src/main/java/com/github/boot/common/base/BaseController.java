@@ -1,12 +1,10 @@
 package com.github.boot.common.base;
 
 import java.net.URLDecoder;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
@@ -28,7 +26,7 @@ public class BaseController {
      */
     @ModelAttribute
     public void setReqAndRes(HttpServletRequest request,
-            HttpServletResponse response) {
+        HttpServletResponse response) {
         this.request = request;
         this.response = response;
         this.session = request.getSession();
@@ -110,7 +108,7 @@ public class BaseController {
      */
     public String getBaseUrl() {
         return request.getScheme() + "://" + request.getServerName() + ":"
-                + request.getServerPort() + request.getContextPath();
+            + request.getServerPort() + request.getContextPath();
     }
 
 }

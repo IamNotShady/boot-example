@@ -1,15 +1,13 @@
 package com.github.boot.common.config;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.github.boot.shiro.realm.LoginRealm;
 import com.github.boot.shiro.util.CustomAtLeastOneSuccessfulStrategy;
 import com.github.boot.shiro.util.RedisCacheSessionDao;
 import com.github.boot.util.Constants;
-
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.shiro.authc.credential.Sha256CredentialsMatcher;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.codec.Base64;
@@ -57,7 +55,7 @@ public class ShiroConfig {
 
     @Bean
     public SecurityManager getDefaultWebSecurityManager(
-            ModularRealmAuthenticator authenticator, DefaultWebSessionManager sessionManager) {
+        ModularRealmAuthenticator authenticator, DefaultWebSessionManager sessionManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setAuthenticator(authenticator);
         List<Realm> realms = new ArrayList<>();
@@ -98,7 +96,7 @@ public class ShiroConfig {
     public ModularRealmAuthenticator getModularRealmAuthenticator() {
         ModularRealmAuthenticator modularRealmAuthenticator = new ModularRealmAuthenticator();
         modularRealmAuthenticator
-                .setAuthenticationStrategy(new CustomAtLeastOneSuccessfulStrategy());
+            .setAuthenticationStrategy(new CustomAtLeastOneSuccessfulStrategy());
         return modularRealmAuthenticator;
     }
 
@@ -114,7 +112,7 @@ public class ShiroConfig {
 
     @Bean
     public DefaultWebSessionManager getDefaultWebSessionManager(
-            RedisCacheSessionDao sessionDAO, SimpleCookie sessionIdCookie) {
+        RedisCacheSessionDao sessionDAO, SimpleCookie sessionIdCookie) {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(sessionDAO);
         sessionManager.setSessionIdCookie(sessionIdCookie);
@@ -122,7 +120,7 @@ public class ShiroConfig {
         sessionManager.setSessionIdCookieEnabled(true);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager
-                .setSessionValidationScheduler(getExecutorServiceSessionValidationScheduler());
+            .setSessionValidationScheduler(getExecutorServiceSessionValidationScheduler());
         return sessionManager;
     }
 
@@ -148,7 +146,7 @@ public class ShiroConfig {
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
-            SecurityManager securityManager) {
+        SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;

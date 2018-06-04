@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.github.boot.pro.mapper.ProMapper">
     <select id="getBasProList" useCache="false" parameterType="ProBean"
-            resultType="ProBean">
+      resultType="ProBean">
         SELECT id,pro_name,pro_code,DATE_FORMAT(create_dt,'%Y-%m-%d %H:%i:%s') create_dt FROM t_pro
         WHERE 1=1
         <if test="pro_name != null and pro_name != ''">

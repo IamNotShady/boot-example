@@ -6,7 +6,6 @@ import com.github.boot.common.base.BaseException;
 import com.github.boot.user.bean.UserBean;
 import com.github.boot.user.service.UserService;
 import com.github.boot.util.Constants;
-
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

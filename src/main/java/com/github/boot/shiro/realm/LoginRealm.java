@@ -1,10 +1,13 @@
 package com.github.boot.shiro.realm;
 
-import java.util.Map;
-
 import com.github.boot.util.Constants;
-
-import org.apache.shiro.authc.*;
+import java.util.Map;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +27,7 @@ public class LoginRealm extends AuthorizationBaseRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
-            throws AuthenticationException {
+        throws AuthenticationException {
         Map<String, Object> info = null;
         logger.info("开始认证");
         if (token instanceof UsernamePasswordToken) {
@@ -32,16 +35,16 @@ public class LoginRealm extends AuthorizationBaseRealm {
             info = shiroService.getUserUniqueIdentityAndPassword(authToken.getUsername());
         }
         boolean flag =
-                info == null || info.isEmpty() || info.get(Constants.DEFAULT_IDENTITY_KEY) == null
-                        || info.get(Constants.DEFAULT_PWD_KEY) == null;
+            info == null || info.isEmpty() || info.get(Constants.DEFAULT_IDENTITY_KEY) == null
+                || info.get(Constants.DEFAULT_PWD_KEY) == null;
         if (!flag) {
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
-                    info.get(Constants.DEFAULT_IDENTITY_KEY), info.get(Constants.DEFAULT_PWD_KEY),
-                    getName());
+                info.get(Constants.DEFAULT_IDENTITY_KEY), info.get(Constants.DEFAULT_PWD_KEY),
+                getName());
             simpleAuthenticationInfo
-                    .setCredentialsSalt(ByteSource.Util.bytes(info.get(DEFAULT_SALT_KEY)));
+                .setCredentialsSalt(ByteSource.Util.bytes(info.get(DEFAULT_SALT_KEY)));
             logger.info("verify account success. usernaame: {}",
-                    info.get(Constants.DEFAULT_IDENTITY_KEY));
+                info.get(Constants.DEFAULT_IDENTITY_KEY));
             return simpleAuthenticationInfo;
         } else {
             // 没有找到账号

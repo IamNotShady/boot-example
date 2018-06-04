@@ -57,7 +57,7 @@ public class DruidProperties {
     }
 
     public void setMaxPoolPreparedStatementPerConnectionSize(
-            int maxPoolPreparedStatementPerConnectionSize) {
+        int maxPoolPreparedStatementPerConnectionSize) {
         this.maxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize;
     }
 

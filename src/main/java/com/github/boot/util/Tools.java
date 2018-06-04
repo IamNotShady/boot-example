@@ -1,12 +1,10 @@
 package com.github.boot.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public final class Tools {
@@ -39,7 +37,7 @@ public final class Tools {
 
 
     public static <T> T json2pojo(String jsonStr, Class<T> clazz)
-            throws Exception {
+        throws Exception {
         return OBJECT_MAPPER.readValue(jsonStr, clazz);
     }
 

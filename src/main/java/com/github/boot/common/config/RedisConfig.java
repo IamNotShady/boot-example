@@ -2,7 +2,6 @@ package com.github.boot.common.config;
 
 
 import java.lang.reflect.Method;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
