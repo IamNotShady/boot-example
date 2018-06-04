@@ -5,9 +5,9 @@
 <configuration>
     <!-- 全局别名 -->
     <typeAliases>
-        <package name="com.boot.pro.bean"/>
-        <package name="com.boot.user.bean"/>
-        <package name="com.boot.shiro.bean"/>
+        <package name="com.github.boot.pro.bean"/>
+        <package name="com.github.boot.user.bean"/>
+        <package name="com.github.boot.shiro.bean"/>
         <package name="java.lang"/>
         <package name="java.util"/>
         <!-- typeAlias alias="" type="" / -->
